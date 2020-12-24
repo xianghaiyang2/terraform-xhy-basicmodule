@@ -1,10 +1,7 @@
 modul框架V1.0.1
 =====================================================================
 
-Terraform moudle which create resources of [best practice 084](https://www.aliyun.com/acts/best-practice/preview?spm=5176.12825654.h2v3icoap.777.e9392c4aqMyn7D&id=79594&aly_as=AEED9btz) on Alicloud.
-
 These types of resources are supported:
-
 * [ECS](https://www.terraform.io/docs/providers/alicloud/r/instance.html)
 * [EIP](https://www.terraform.io/docs/providers/alicloud/r/eip.html)
 * [KMS](https://www.terraform.io/docs/providers/alicloud/r/kms_key.html)
