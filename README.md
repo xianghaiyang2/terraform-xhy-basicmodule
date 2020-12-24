@@ -1,16 +1,6 @@
 modul框架V1.0.1
 =====================================================================
 
-These types of resources are supported:
-* [ECS](https://www.terraform.io/docs/providers/alicloud/r/instance.html)
-* [EIP](https://www.terraform.io/docs/providers/alicloud/r/eip.html)
-* [KMS](https://www.terraform.io/docs/providers/alicloud/r/kms_key.html)
-* [OSS](https://www.terraform.io/docs/providers/alicloud/r/oss_bucket.html)
-* [RAM](https://www.terraform.io/docs/providers/alicloud/r/ram_access_key.html)
-* [RDS](https://www.terraform.io/docs/providers/alicloud/r/db_instance.html)
-* [SLB](https://www.terraform.io/docs/providers/alicloud/r/slb.html)
-* [VPC](https://www.terraform.io/docs/providers/alicloud/r/vpc.html)
-
 ## Usage
 ```hcl
 module "example" {
@@ -262,18 +252,7 @@ Only to create VPC:
 
 
 
-Authors
--------
-Created and maintained by xianwang.
 
-License
-----
- Mozilla Public License 2.0. See LICENSE for full details.
 
-Reference
----------
-* [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
-* [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)
-* [Terraform-Provider-Alicloud Docs](https://www.terraform.io/docs/providers/alicloud/index.html)
 
 
