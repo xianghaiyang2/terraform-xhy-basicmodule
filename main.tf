@@ -1,8 +1,9 @@
 provider "alicloud" {
-  version = ">=1.60.0"
+  version = "1.108.0"
   region = "${var.region}"
   profile = "${var.profile}"
-  configuration_source = "terraform-alicloud-modules/terraform-alicloud-best-practice-084"
+  #configuration_source = "terraform-alicloud-modules/terraform-alicloud-best-practice-084"
+  configuration_source = "xianghaiyang/terraform-xhy-basicmodule"
 }
 
 module "vpc" {
