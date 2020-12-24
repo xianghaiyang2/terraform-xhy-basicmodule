@@ -1,11 +1,10 @@
-Alicloud Best Practice 084 Terraform Module 
-=====================================================================
 
 
 ## Usage
 ```hcl
 module "example" {
-  source = "terraform-alicloud-modules/best-practice-084/alicloud"
+  source = "module "basicmodule" {
+  source  = "app.terraform.io/xianghaiyang/basicmodule/xhy"
   #Main
   region = "cn-shanghai"
   profile = "default"
