@@ -42,16 +42,6 @@ module "example" {
   vpc_name = "webserver"
   vpc_cidr = "10.99.0.0/19"
 
-  #SLB
-  slb_name = "auto_named_slb"
-  master_zone_id = "cn-shanghai-f"
-  slave_zone_id = "cn-shanghai-g"
-  address_type = "intranet"
-  specification = "slb.s2.small"
-  delete_protection = "off"
-  internet_charge_type = "PayByTraffic"
-
-
   #RDS
   instance_type = "rds.mysql.s3.large"
   rds_name = "rds"
@@ -73,56 +63,6 @@ module "example" {
   character_set = "utf8"
   account_privilege = "ReadWrite"
 
-  #RAM
-  user_name = "test1121"
-  display_name = "test01"
-  mfa_bind_required = false
-  password_reset_required = true
-  password = "Test1234!"
-  group_name = "app_dev_xy"
-  group_comments = "app开发用户组"
-  force = true
-  ak_status = "Active"
-  secret_file = ""//自定义文件路径
-  policy_name = {
-    policy_name1 = "AliyunOSSFullAccess"
-    policy_name2 = "AliyunECSFullAccess"
-  }
-  policy_type = {
-    policy_type1 = "System"
-    policy_type2 = "System"
-  }
-
-  #OSS
-  sse_algorithm = "AES256"//should be in array []string{"AES256", "KMS"}
-  bucket_names = {
-    buc0 = "apptest-xy1234"
-  }
-  bucket_acls = {
-    buc0 = "private"//"private","public-read"
-  }
-
-  bucket_storage_classes = {
-    buc0 = "Standard"//"Standard","IA","Archive"
-  }
-  logging_target_prefix = "log/"
-  object_key = {
-    key1 = ""//自定义
-  }
-  object_source = {
-    source1 = ""//自定义
-  }
-
-  #KMS
-  description = "KMS for OSS"
-  deletion_window_in_days = "7"
-  is_enabled = true
-
-  #EIP
-  eip_internet_charge_type = "PayByTraffic"
-  bandwidth = "2"
-  isp = "BGP"
-  eip_instance_charge_type = "PostPaid"
 
   #ECS
   ecs_count_format = "%02d"
