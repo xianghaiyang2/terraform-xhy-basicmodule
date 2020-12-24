@@ -1,4 +1,4 @@
-Alicloud Best Practice 084 Terraform Module 
+modul框架V1.0.1
 =====================================================================
 
 Terraform moudle which create resources of [best practice 084](https://www.aliyun.com/acts/best-practice/preview?spm=5176.12825654.h2v3icoap.777.e9392c4aqMyn7D&id=79594&aly_as=AEED9btz) on Alicloud.
@@ -17,7 +17,7 @@ These types of resources are supported:
 ## Usage
 ```hcl
 module "example" {
-  source = "terraform-alicloud-modules/best-practice-084/alicloud"
+  source = "xianghaiyang/terraform-xhy-basicmodule"
   #Main
   region = "cn-shanghai"
   profile = "default"
