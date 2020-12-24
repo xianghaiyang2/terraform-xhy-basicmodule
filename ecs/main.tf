@@ -4,10 +4,12 @@ data "alicloud_images" "images_ds" {
 }
 
 resource "alicloud_instance" "instance" {
+  # count本不属于alicloud_instance但是，可以根据count语法，创建多个实例
+  count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
   instance_name = "${var.ecs_name}-${format(var.ecs_count_format, count.index+1)}"
   image_id = "${data.alicloud_images.images_ds.images.0.id}"
   instance_type = "${var.ecs_type}"
-  count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
+
   security_groups = ["${alicloud_security_group.group.0.id}"]
   availability_zone = "${var.availability_zones[count.index+1]}"
   internet_charge_type = "${var.ecs_internet_charge_type}"
