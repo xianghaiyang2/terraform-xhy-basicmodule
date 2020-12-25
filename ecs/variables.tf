@@ -1,20 +1,36 @@
 #ECS
-variable "ecs_count" {
 
-}
 
 variable "use_ecs_module" {
-
+  description = "是否需要创建实例"
 }
 
+
+variable "ecs_count" {
+  description = "ecs实例的数目"
+}
+
+variable "vpc_id" {
+
+}
 
 variable "vswitch_ids" {
   type = "list"
+  description = "交换机id []"
 
 }
 
-variable "ecs_count_format" {
+variable "security_group_name" {
 
+}
+
+variable "availability_zones" {
+  type = "list"
+}
+
+
+variable "ecs_count_format" {
+  description = ""
 }
 
 variable "image_owners" {
@@ -24,9 +40,6 @@ variable "image_name" {
 
 }
 
-variable "availability_zones" {
-  type = "list"
-}
 
 variable "ecs_name" {
 
@@ -74,14 +87,8 @@ variable "system_disk_size" {
 
 }
 
-variable "security_group_name" {
-
-}
 
 variable "nic_type" {
 
 }
 
-variable "vpc_id" {
-
-}

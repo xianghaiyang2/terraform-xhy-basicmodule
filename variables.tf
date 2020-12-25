@@ -54,22 +54,28 @@ variable "use_vpc_module" {
   default = true
 }
 
+
 #VPC
 variable "availability_zones" {
   type = "map"
   default = {
-    az0 = "cn-shanghai-e"
-    az1 = "cn-shanghai-f"
-    az2 = "cn-shanghai-g"
+    check0 = "cn-shanghai-e"
+    check1 = "cn-shanghai-f"
+    check2 = "cn-shanghai-g"
   }
 }
+# vpc网段
+variable "vpc_cidr" {
+  default = "10.99.0.0/19"
+}
 
+# 交换机网段
 variable "cidr_blocks" {
   type = "map"
   default = {
-    az0 = "10.99.0.0/21"
-    az1 = "10.99.8.0/21"
-    az2 = "10.99.16.0/21"
+    check0 = "10.99.0.0/21"
+    check1 = "10.99.8.0/21"
+    check2 = "10.99.16.0/21"
   }
 }
 
@@ -77,9 +83,7 @@ variable "vpc_name" {
   default = "webserver"
 }
 
-variable "vpc_cidr" {
-  default = "10.99.0.0/19"
-}
+
 
 #SLB
 variable "slb_name" {

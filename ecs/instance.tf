@@ -1,11 +1,11 @@
 data "alicloud_images" "images_ds" {
-  owners     = "${var.image_owners}"
-  name_regex = "${var.image_name}"
+  owners     = "${var.image_owners}"     # 镜像来源()全局查询镜像system, self, others, marketplace
+  name_regex = "${var.image_name}"       # "^centos_6"  这点说明可以直接查询官方的
 }
 
 resource "alicloud_instance" "instance" {
   # count本不属于alicloud_instance但是，可以根据count语法，创建多个实例
-  count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
+  count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"      # 这里代表只能删除一台？
   instance_name = "${var.ecs_name}-${format(var.ecs_count_format, count.index+1)}"
   image_id = "${data.alicloud_images.images_ds.images.0.id}"
   instance_type = "${var.ecs_type}"

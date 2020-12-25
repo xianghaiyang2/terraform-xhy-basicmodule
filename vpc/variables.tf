@@ -2,16 +2,17 @@ variable "availability_zones" {
 
 }
 
-variable "cidr_blocks" {
-}
-
-
 variable "vpc_name" {
-
+  description = "vpc名字"
 }
 
 variable "vpc_cidr" {
-
+  description = "vpc的网段例如：172.16.0.0/12"
 }
+
+variable "cidr_blocks" {
+  description = "交换机的网段例如：172.16.0.0/24"
+}
+
 
 variable "use_vpc_module" {}
