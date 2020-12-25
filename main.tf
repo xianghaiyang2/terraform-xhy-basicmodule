@@ -2,7 +2,7 @@ provider "alicloud" {
   version = "1.108.0"
   region = "${var.region}"
   profile = "${var.profile}"
-  configuration_source = "xianghaiyang/terraform-xhy-basicmodule"
+//  configuration_source = "xianghaiyang/terraform-xhy-basicmodule"
 }
 
 module "vpc" {

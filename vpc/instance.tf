@@ -1,5 +1,5 @@
 resource "alicloud_vpc" "vpc" {
-  count = "${var.use_vpc_module ? 1 : 0}"   # condition ? true_val :false_val  var.use_vpc_module输出true, 条件满足count = 1
+  count = "${var.use_vpc_module ? 1 : 0}"   # condition ? true_val :false_val 、 var.use_vpc_module输出true, 条件满足count = 1
   name       = "${var.vpc_name}"
   cidr_block = "${var.vpc_cidr}"            # 192.168.0.0/16(must)
 }
