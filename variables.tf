@@ -358,7 +358,7 @@ variable "ecs_name" {
 }
 
 variable "ecs_type" {
-  default = "ecs.t5-lc1m1.small"
+  default = "ecs.ic5.large"
 }
 
 
