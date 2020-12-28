@@ -82,7 +82,7 @@ variable "cidr_blocks" {
 }
 
 variable "vpc_name" {
-  default = "webserver"
+  default = "xhy_test"
 }
 
 
@@ -121,10 +121,10 @@ variable "internet_charge_type" {
 variable "tags" {
   type = "map"
   default = {
-    app   = "客户端"
-    owner = "bestpractice"
-    team  = "rds"
-    name  = "arthur"
+    name   = "xhy"
+    team  = "devops"
+    forwhat = "test"
+
   }
 }
 
@@ -358,12 +358,12 @@ variable "ecs_name" {
 }
 
 variable "ecs_type" {
-  default = "ecs.c5.large"
+  default = "ecs.t5-lc1m1.small"
 }
 
 
 variable "key_name" {
-  default = "xianwang_key_pair_1121"
+  default = "xianghaiyang_key_pair_1121"
 }
 
 variable "ecs_internet_charge_type" {

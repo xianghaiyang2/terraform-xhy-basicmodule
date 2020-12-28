@@ -13,7 +13,8 @@ print('我今年%02d岁了' %a)
 instance_name = "\'abc\'-format('%02d, 1)"
 print(instance_name)
 
-
+b = [1]
+print(a[1])
 
 
 

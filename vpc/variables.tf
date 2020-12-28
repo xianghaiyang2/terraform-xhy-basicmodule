@@ -16,3 +16,8 @@ variable "cidr_blocks" {
 
 
 variable "use_vpc_module" {}
+
+variable "tags" {
+  description = "统一标签"
+
+}
