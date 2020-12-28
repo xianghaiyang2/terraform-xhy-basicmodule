@@ -66,15 +66,15 @@ variable "availability_zones" {
 }
 # vpc网段
 variable "vpc_cidr" {
-  default = "10.99.0.0/19"
+  default = "172.16.0.0/12"
 }
 
 # 交换机网段
 variable "cidr_blocks" {
   type = "map"
   default = {
-    check0 = "10.99.0.0/21"
-    check1 = "10.99.8.0/21"
+    check0 = "172.16.2.0/13"
+    check1 = "172.16.1.0/14"
 
   }
 }
