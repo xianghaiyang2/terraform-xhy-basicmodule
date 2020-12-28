@@ -55,7 +55,9 @@ variable "use_vpc_module" {
 }
 
 
-#VPC
+
+
+# ====================VPC==================
 # 这特么是交换机的可用区，vpc没有可用区的说法哦
 variable "availability_zones" {
   type = "map"
@@ -73,8 +75,8 @@ variable "vpc_cidr" {
 variable "cidr_blocks" {
   type = "map"
   default = {
-    check0 = "172.16.2.0/13"
-    check1 = "172.16.1.0/14"
+    check0 = "172.16.2.0/24"
+    check1 = "172.16.1.0/24"
 
   }
 }
@@ -85,7 +87,9 @@ variable "vpc_name" {
 
 
 
-#SLB
+
+
+# =====================SLB=====================
 variable "slb_name" {
   default = "auto_named_slb"
 }
@@ -124,7 +128,9 @@ variable "tags" {
   }
 }
 
-#RDS
+
+
+# =================RDS=================
 variable "instance_type" {
   default = "rds.mysql.s3.large"
 }
@@ -158,7 +164,7 @@ variable "rds_zone_id" {
 }
 
 
-#db
+# =======================db====================
 variable "db_description" {
   default = ""
 }
@@ -189,7 +195,9 @@ variable "account_privilege" {
   default = "ReadWrite"
 }
 
-#RAM
+
+
+# ==========================RAM=========================
 variable "user_name" {
   default = "test1121"
 }
@@ -246,7 +254,9 @@ variable "policy_type" {
   }
 }
 
-#OSS
+
+
+# =====================OSS=====================
 variable "sse_algorithm" {
   default = "AES256"//should be in array []string{"AES256", "KMS"}
 }
@@ -290,7 +300,10 @@ variable "object_source" {
   }
 }
 
-#KMS
+
+
+
+# =========================KMS=========================
 variable "description" {
   default = "KMS for OSS"
 }
@@ -303,7 +316,9 @@ variable "is_enabled" {
   default = true
 }
 
-#EIP
+
+
+# ========================EIP===========================
 variable "eip_internet_charge_type" {
   default = "PayByTraffic"
 }
@@ -320,6 +335,9 @@ variable "isp" {
 variable "eip_instance_charge_type" {
   default = "PostPaid"
 }
+
+
+
 
 # =========================ECS=========================
 variable "ecs_count_format" {

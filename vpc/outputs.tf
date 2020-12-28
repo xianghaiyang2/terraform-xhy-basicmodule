@@ -2,6 +2,7 @@ output "vpc_id" {
   value = "${alicloud_vpc.vpc.0.id}"
 }
 
+# 输出vpc网段
 output "vpc_cidr_block" {
   value = "${alicloud_vpc.vpc.0.cidr_block}"
 }
