@@ -20,6 +20,15 @@ variable "vswitch_ids" {
 
 }
 
+//variable "vswitch_id" {
+//  type = "string"
+//  description = "交换机id"
+//
+//}
+
+
+
+
 variable "security_group_name" {
 
 }

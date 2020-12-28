@@ -56,12 +56,12 @@ variable "use_vpc_module" {
 
 
 #VPC
+# 这特么是交换机的可用区，vpc没有可用区的说法哦
 variable "availability_zones" {
   type = "map"
   default = {
-    check0 = "cn-shanghai-e"
-    check1 = "cn-shanghai-f"
-    check2 = "cn-shanghai-g"
+    check0 = "cn-chengdu-a"
+    check1 = "cn-chengdu-b"
   }
 }
 # vpc网段
@@ -75,7 +75,7 @@ variable "cidr_blocks" {
   default = {
     check0 = "10.99.0.0/21"
     check1 = "10.99.8.0/21"
-    check2 = "10.99.16.0/21"
+
   }
 }
 
@@ -321,7 +321,7 @@ variable "eip_instance_charge_type" {
   default = "PostPaid"
 }
 
-#ECS
+# =========================ECS=========================
 variable "ecs_count_format" {
   default = "%02d"
 }
@@ -385,5 +385,8 @@ variable "security_group_name" {
 variable "nic_type" {
   default = "intranet"
 }
+
+
+# =============myself add =======================
 
 

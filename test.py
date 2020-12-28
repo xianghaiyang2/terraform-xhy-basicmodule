@@ -4,8 +4,14 @@ for i in range(10):
     print(x)
 
 
+a = 1
+print('我今年%02d岁了' %a)
 
+# b = format("%02d", 1)
+# print(b)
 
+instance_name = "\'abc\'-format('%02d, 1)"
+print(instance_name)
 
 
 
