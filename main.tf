@@ -40,31 +40,31 @@ module "vpc" {
 //  engine_version = "${var.engine_version}"
 //}
 //
-//module "ecs" {
-//  source = "./ecs"
-//  ecs_count = "${var.ecs_count}"
-//  use_ecs_module = "${var.use_ecs_module}"
-//  vpc_id = "${module.vpc.vpc_id}"                                # 这里是引用别的module资源，途径是output
-//
-//  vswitch_ids = "${module.vpc.vswitch_ids}"                      # 这里是引用别的module资源，途径是output
-//  availability_zones = "${module.vpc.availability_zones}"
-//  security_group_name = "${var.security_group_name}"
-//  nic_type = "${var.nic_type}"
-//  ecs_type = "${var.ecs_type}"
-//  deletion_protection = "${var.deletion_protection}"
-//  ecs_instance_charge_type = "${var.ecs_instance_charge_type}"
-//  disk_size = "${var.disk_size}"
-//  system_disk_size = "${var.system_disk_size}"
-//  ecs_internet_charge_type = "${var.ecs_internet_charge_type}"
-//  ecs_name = "${var.ecs_name}"
-//  image_name = "${var.image_name}"
-//  image_owners = "${var.image_owners}"
-//  key_name = "${var.key_name}"
-//  disk_category = "${var.disk_category}"
-//  tags = "${var.tags}"
-//  ecs_count_format = "${var.ecs_count_format}"
-//  internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
-//}
+module "ecs" {
+  source = "./ecs"
+  ecs_count = "${var.ecs_count}"
+  use_ecs_module = "${var.use_ecs_module}"
+  vpc_id = "${module.vpc.vpc_id}"                                # 这里是引用别的module资源，途径是output
+
+  vswitch_ids = "${module.vpc.vswitch_ids}"                      # 这里是引用别的module资源，途径是output
+  availability_zones = "${module.vpc.availability_zones}"
+  security_group_name = "${var.security_group_name}"
+  nic_type = "${var.nic_type}"
+  ecs_type = "${var.ecs_type}"
+  deletion_protection = "${var.deletion_protection}"
+  ecs_instance_charge_type = "${var.ecs_instance_charge_type}"
+  disk_size = "${var.disk_size}"
+  system_disk_size = "${var.system_disk_size}"
+  ecs_internet_charge_type = "${var.ecs_internet_charge_type}"
+  ecs_name = "${var.ecs_name}"
+  image_name = "${var.image_name}"
+  image_owners = "${var.image_owners}"
+  key_name = "${var.key_name}"
+  disk_category = "${var.disk_category}"
+  tags = "${var.tags}"
+  ecs_count_format = "${var.ecs_count_format}"
+  internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
+}
 
 
 
