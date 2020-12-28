@@ -13,6 +13,7 @@ module "vpc" {
   vpc_name = "${var.vpc_name}"
   cidr_blocks = "${var.cidr_blocks}"
   availability_zones = "${var.availability_zones}"
+  tags               = "${var.tags}"
 }
 
 
