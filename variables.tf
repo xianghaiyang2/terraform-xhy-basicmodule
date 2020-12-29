@@ -358,11 +358,11 @@ variable "image_name" {
 
 
 variable "vswitch_ids" {
-  default = ["vsw-2vc8muy6vn90ec6lf4izc"]
+  default = ["vsw-2vcxitbrf5ovyars2bfug"]
 }
 
 variable "vswitch_id" {
-  default = "vsw-2vc8muy6vn90ec6lf4izc"
+  default = "vsw-2vcxitbrf5ovyars2bfug"
 }
 variable "ecs_name" {
   default = "xhsdfasfdy_test"
