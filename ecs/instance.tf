@@ -1,10 +1,12 @@
 
 resource "alicloud_security_group" "group" {
-  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
-  name = "${var.security_group_name}"
-  vpc_id = "${var.vpc_id}"
-  inner_access_policy = "Accept"
-  description = "default security group"
+  count                 = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  name                  = "${var.security_group_name}"
+  vpc_id                = "${var.vpc_id}"
+  inner_access_policy   = "Accept"
+  description           = "default security group"
+  tags                  = "${var.tags}"
+
 }
 
 resource "alicloud_security_group_rule" "rdp" {

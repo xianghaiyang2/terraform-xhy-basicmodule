@@ -91,7 +91,7 @@ variable "vpc_name" {
 
 # =====================SLB=====================
 variable "slb_name" {
-  default = "auto_named_slb"
+  default = "xhy_test"
 }
 
 variable "master_zone_id" {
@@ -136,7 +136,7 @@ variable "instance_type" {
 }
 
 variable "rds_name" {
-  default = "rds"
+  default = "xhy_test"
 }
 
 variable "count_format" {
@@ -354,7 +354,7 @@ variable "image_name" {
 
 
 variable "ecs_name" {
-  default = "test"
+  default = "xhy_test"
 }
 
 variable "ecs_type" {
@@ -363,7 +363,7 @@ variable "ecs_type" {
 
 
 variable "key_name" {
-  default = "xianghaiyang_key_pair_1121"
+  default = "xhy_test"
 }
 
 variable "ecs_internet_charge_type" {
@@ -397,7 +397,7 @@ variable "system_disk_size" {
 }
 
 variable "security_group_name" {
-  default = "ali-sg-ec-sz"
+  default = "xhy_test"
 }
 
 variable "nic_type" {
