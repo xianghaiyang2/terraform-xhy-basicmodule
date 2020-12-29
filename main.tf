@@ -47,8 +47,8 @@ module "ecs" {
   ecs_count = "${var.ecs_count}"
   use_ecs_module = "${var.use_ecs_module}"
   vpc_id = "${module.vpc.vpc_id}"                                # 这里是引用别的module资源，途径是output
-  vswitch_id = var.vswitch_id != "" ? var.vswitch_id : ''
-  vswitch_ids = var.vswitch_ids != "" ? var.vswitch_ids : []          # 这里是引用别的module资源，途径是output
+  vswitch_id = "${var.vswitch_id}"
+  vswitch_ids = "${var.vswitch_ids}"                     # 这里是引用别的module资源，途径是output
   availability_zones = "${module.vpc.availability_zones}"
   security_group_name = "${var.security_group_name}"
   nic_type = "${var.nic_type}"
@@ -66,6 +66,7 @@ module "ecs" {
   tags = "${var.tags}"
   ecs_count_format = "${var.ecs_count_format}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
+
 }
 
 

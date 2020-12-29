@@ -13,17 +13,16 @@ variable "vpc_id" {
 
 }
 
+variable "vswitch_id" {
 
+
+}
 
 variable "vswitch_ids" {
 
 
 }
 
-variable "vswitch_id" {
-
-
-}
 
 variable "security_group_name" {
 

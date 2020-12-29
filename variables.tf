@@ -356,15 +356,14 @@ variable "image_name" {
   default = "^centos_7_06_64"
 }
 
-variable "vswitch_id" {
-
-}
 
 variable "vswitch_ids" {
 
 }
 
+variable "vswitch_id" {
 
+}
 variable "ecs_name" {
   default = "xhsdfasfdy_test"
 }
