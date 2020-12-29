@@ -59,7 +59,7 @@ resource "alicloud_instance" "instance" {
   instance_type = "${var.ecs_type}"
   security_groups = ["${alicloud_security_group.group.0.id}"]
 //  availability_zone = "${var.availability_zones[count.index]}"    ###
-  availability_zone = element(distinct(compact(concat(var.availability_zones))), count.index)
+//  availability_zone = element(distinct(compact(concat(var.availability_zones))), count.index)
   internet_charge_type = "${var.ecs_internet_charge_type}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
   instance_charge_type = "${var.ecs_instance_charge_type}"
@@ -67,7 +67,7 @@ resource "alicloud_instance" "instance" {
   system_disk_size = "${var.system_disk_size}"
 //  vswitch_id = "${var.vswitch_ids[count.index]}"                  ###
   # 连接多个列表、去空、去重、下标count.index轮循
-  vswitch_id = element(distinct(compact(concat([var.vswitch_id], var.vswitch_ids))), count.index)
+  vswitch_id = element(distinct(compact(concat([var.vswitch_id], var.vswitch_ids))), count.index, )
 //  vswitch_id = element(distinct(compact(concat([var.vswitch_id], var.vswitch_ids))), count.index, )
   tags = "${var.tags}"
   deletion_protection = "${var.deletion_protection}"
