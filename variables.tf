@@ -356,10 +356,6 @@ variable "image_name" {
   default = "^centos_7_06_64"
 }
 
-variable "vswitch_ids" {
-  type = "list"
-  description = "这是前端传来的交换机[]"
-}
 
 
 variable "ecs_name" {
