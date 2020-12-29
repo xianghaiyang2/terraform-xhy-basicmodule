@@ -13,10 +13,7 @@ variable "vpc_id" {
 
 }
 
-variable "vswitch_id" {
 
-
-}
 
 variable "vswitch_ids" {
 
