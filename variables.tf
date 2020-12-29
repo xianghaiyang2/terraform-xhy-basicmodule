@@ -357,6 +357,12 @@ variable "image_name" {
 }
 
 
+variable "vswitch_ids" {
+  type = "list"
+  description = "交换机id []"
+
+}
+
 
 variable "ecs_name" {
   default = "xhsdfasfdy_test"
