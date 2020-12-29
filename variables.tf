@@ -362,7 +362,7 @@ variable "vswitch_ids" {
 }
 
 variable "vswitch_id" {
-  default = ''
+  default = ""
 }
 variable "ecs_name" {
   default = "xhsdfasfdy_test"
