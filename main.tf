@@ -47,7 +47,7 @@ module "ecs" {
   ecs_count = "${var.ecs_count}"
   use_ecs_module = "${var.use_ecs_module}"
   vpc_id = "${module.vpc.vpc_id}"                                # 这里是引用别的module资源，途径是output
-  vswitch_ids = "${module.vpc.vswitch_ids}"                   # 这里是引用别的module资源，途径是output
+  vswitch_ids = "${module.vpc.vswitch_ids[0]}"                   # 这里是引用别的module资源，途径是output
   availability_zones = "${module.vpc.availability_zones}"
   security_group_name = "${var.security_group_name}"
   nic_type = "${var.nic_type}"
