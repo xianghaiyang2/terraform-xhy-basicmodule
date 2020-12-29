@@ -82,7 +82,7 @@ variable "cidr_blocks" {
 }
 
 variable "vpc_name" {
-  default = "xhy_test"
+  default = "xhy_sfasdftest"
 }
 
 
@@ -91,7 +91,7 @@ variable "vpc_name" {
 
 # =====================SLB=====================
 variable "slb_name" {
-  default = "xhy_test"
+  default = "xhy_safasfastest"
 }
 
 variable "master_zone_id" {
@@ -136,7 +136,7 @@ variable "instance_type" {
 }
 
 variable "rds_name" {
-  default = "xhy_test"
+  default = "xhysafasdf_test"
 }
 
 variable "count_format" {
@@ -219,7 +219,7 @@ variable "password" {
 }
 
 variable "group_name" {
-  default = "app_dev_xy"
+  default = "app_desdgdgv_xy"
 }
 
 variable "group_comments" {
@@ -354,7 +354,7 @@ variable "image_name" {
 
 
 variable "ecs_name" {
-  default = "xhy_test"
+  default = "xhsdfasfdy_test"
 }
 
 variable "ecs_type" {
@@ -363,7 +363,7 @@ variable "ecs_type" {
 
 
 variable "key_name" {
-  default = "xhy_test"
+  default = "xhsdzsfzsy_test"
 }
 
 variable "ecs_internet_charge_type" {
@@ -397,7 +397,7 @@ variable "system_disk_size" {
 }
 
 variable "security_group_name" {
-  default = "xhy"
+  default = "xhfsfday"
 }
 
 variable "nic_type" {
