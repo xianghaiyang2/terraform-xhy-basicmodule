@@ -52,6 +52,8 @@ data "alicloud_images" "images_ds" {
   name_regex = "${var.image_name}"
 }
 
+
+
 resource "alicloud_instance" "instance" {
   count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
   instance_name = "${var.ecs_name}-${format(var.ecs_count_format, count.index+1)}"
