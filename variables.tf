@@ -357,14 +357,10 @@ variable "image_name" {
 }
 
 variable "vswitch_id" {
-  type = "string"
-  description = "交换机id"
 
 }
 
 variable "vswitch_ids" {
-  type = "list"
-  description = "交换机id []"
 
 }
 

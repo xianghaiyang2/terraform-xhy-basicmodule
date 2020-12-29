@@ -16,14 +16,12 @@ variable "vpc_id" {
 
 
 variable "vswitch_ids" {
-  type = "list"
-  description = "交换机id []"
+
 
 }
 
 variable "vswitch_id" {
-  type = "string"
-  description = "交换机id"
+
 
 }
 
