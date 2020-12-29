@@ -356,6 +356,11 @@ variable "image_name" {
   default = "^centos_7_06_64"
 }
 
+variable "vswitch_id" {
+  type = "string"
+  description = "交换机id"
+
+}
 
 variable "vswitch_ids" {
   type = "list"
