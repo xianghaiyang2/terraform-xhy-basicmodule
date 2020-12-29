@@ -397,7 +397,7 @@ variable "system_disk_size" {
 }
 
 variable "security_group_name" {
-  default = "xhy_test"
+  default = "xhy"
 }
 
 variable "nic_type" {
