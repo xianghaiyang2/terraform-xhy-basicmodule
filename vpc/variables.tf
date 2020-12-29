@@ -6,6 +6,11 @@ variable "vpc_name" {
   description = "vpc名字"
 }
 
+
+variable "vswitch_name" {
+  description = "vswitch_name名字"
+
+}
 variable "vpc_cidr" {
   description = "vpc的网段例如：172.16.0.0/12"
 }

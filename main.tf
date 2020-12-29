@@ -11,6 +11,7 @@ module "vpc" {
   use_vpc_module = "${var.use_vpc_module}"
   vpc_cidr = "${var.vpc_cidr}"
   vpc_name = "${var.vpc_name}"
+  vswitch_name = "${var.vswitch_name}"
   cidr_blocks = "${var.cidr_blocks}"
   availability_zones = "${var.availability_zones}"
   tags               = "${var.tags}"

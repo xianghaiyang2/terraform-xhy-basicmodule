@@ -85,6 +85,10 @@ variable "vpc_name" {
   default = "xhy_sfasdftest"
 }
 
+variable "vswitch_name" {
+  default = "xhy_sfasdftest"
+}
+
 
 
 
@@ -121,9 +125,9 @@ variable "internet_charge_type" {
 variable "tags" {
   type = "map"
   default = {
-    name   = "xhy"
-    team  = "devops"
-    forwhat = "test"
+    name   = "sdfasf"
+    team  = "devopssafafsaf"
+    forwhat = "safasdfsafas"
 
   }
 }
