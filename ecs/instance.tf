@@ -52,14 +52,6 @@ data "alicloud_images" "images_ds" {
   name_regex = "${var.image_name}"
 }
 
-# 指定规格实例的可用区
-data "alicloud_zones" "instancezones_ds" {
-  available_instance_type = "${var.ecs_type}"
-  available_resource_creation = "Instance"
-}
-
-
-
 
 
 

@@ -16,7 +16,7 @@ variable "vpc_id" {
 
 
 variable "vswitch_ids" {
-
+  type = "list"
 
 }
 

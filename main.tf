@@ -18,30 +18,7 @@ module "vpc" {
 }
 
 
-//module "rds" {
-//  source = "./rds"
-//  use_rds_module = "${var.use_rds_module}"
-//  vswitch_id = "${module.vpc.vswitch_ids[1]}"
-//  vpc_cidr_block = "${module.vpc.vpc_cidr_block}"
-//  rds_account_name = "${var.rds_account_name}"
-//  character_set = "${var.character_set}"
-//  account_privilege = "${var.account_privilege}"
-//  rds_count = "${var.rds_count}"
-//  account_type = "${var.account_type}"
-//  account_name = "${var.account_name}"
-//  instance_charge_type = "${var.instance_charge_type}"
-//  instance_type = "${var.instance_type}"
-//  tags = "${var.tags}"
-//  count_format = "${var.count_format}"
-//  rds_name = "${var.rds_name}"
-//  engine = "${var.engine}"
-//  instance_storage = "${var.instance_storage}"
-//  rds_account_pwd = "${var.rds_account_pwd}"
-//  db_description = "${var.db_description}"
-//  rds_zone_id = "${var.rds_zone_id}"
-//  engine_version = "${var.engine_version}"
-//}
-//
+
 module "ecs" {
   source = "./ecs"
   ecs_count = "${var.ecs_count}"
@@ -68,25 +45,30 @@ module "ecs" {
 
 }
 
+module "slb" {
+  source = "./slb"
+  use_slb_module = "${var.use_slb_module}"
+  slb_name = "${var.slb_name}"
+  address_type = "${var.address_type}"
+  specification = "${var.specification}"
+  delete_protection = "${var.delete_protection}"
+  internet_charge_type = "${var.internet_charge_type}"
+  vswitch_ids = "${var.vswitch_id != "" ? [var.vswitch_id] : module.vpc.vswitch_ids}"    # 传值则用值创建，否则就用第一台创建
+  tags = "${var.tags}"
+  instance_id = "${module.ecs.instance_ids}"
+}
 
 
 
 
 
-# module "adb4postgresql" {
-#   source             = "./db/adb4postgresql"
-#   use_adb4postgresql_module = false
-#   instance_count     = 1
-#   #################
-#   # Instance
-#   #################
-#   zone_id      = "cn-shanghai-g"
-#   vswitch_id   = "${module.vpc.vswitch_ids[1]}"
-#   security_ips = ["${module.vpc.vpc_cidr_block}"]
-#   tags                = "${var.tags}"
-#   instance_name          = "terraform-test"
-#   engine               = "gpdb"
-#   engine_version       = "6.0"
-#   instance_class       = "gpdb.group.segsdx2"
-#   instance_group_count = "2"
-# }
+
+//module "eip" {
+//  source = "./eip"
+//  use_eip_module = "${var.use_eip_module}"
+//  bandwidth = "${var.bandwidth}"
+//  eip_internet_charge_type = "${var.eip_internet_charge_type}"
+//  isp = "${var.isp}"
+//  eip_instance_charge_type = "${var.eip_instance_charge_type}"
+//  tags = "${var.tags}"
+//}
