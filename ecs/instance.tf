@@ -59,8 +59,10 @@ data "alicloud_zones" "instancezones_ds" {
 }
 
 
-
-
+data "alicloud_vswitches" "vswitches" {
+  vpc_id   = "${var.vpc_id}"
+  zone_id  = "${data.alicloud_zones.instancezones_ds.ids}"
+}
 
 
 resource "alicloud_instance" "instance" {
@@ -78,7 +80,7 @@ resource "alicloud_instance" "instance" {
   system_disk_size = "${var.system_disk_size}"
 //  vswitch_id = "${var.vswitch_ids[count.index]}"                  ###
   # 连接多个列表、去空、去重、下标count.index轮循
-  vswitch_id = element(distinct(compact(concat(var.vswitch_ids))), 0)
+  vswitch_id = "${var.vswitch_id != "" ? var.vswitch_id : element(distinct(compact(concat(data.alicloud_vswitches.vswitches.ids))), count.index)}"
 //  vswitch_id = element(distinct(compact(concat([var.vswitch_id], var.vswitch_ids))), count.index, )
   tags = "${var.tags}"
   deletion_protection = "${var.deletion_protection}"

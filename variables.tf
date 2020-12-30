@@ -99,11 +99,11 @@ variable "slb_name" {
 }
 
 variable "master_zone_id" {
-  default = "cn-shanghai-f"
+  default = "cn-chengdu-a"
 }
 
 variable "slave_zone_id" {
-  default = "cn-shanghai-g"
+  default = "cn-chengdu-b"
 }
 
 variable "address_type" {
@@ -115,7 +115,7 @@ variable "specification" {
 }
 
 variable "delete_protection" {
-  default = "off"
+  default = "false"
 }
 
 variable "internet_charge_type" {
@@ -335,10 +335,11 @@ variable "isp" {
   default = "BGP"
 }
 
-
 variable "eip_instance_charge_type" {
   default = "PostPaid"
 }
+
+
 
 
 

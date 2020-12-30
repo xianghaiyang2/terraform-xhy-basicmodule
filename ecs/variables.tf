@@ -15,8 +15,8 @@ variable "vpc_id" {
 
 
 
-variable "vswitch_ids" {
-
+variable "vswitch_id" {
+  type = "string"
 
 }
 
