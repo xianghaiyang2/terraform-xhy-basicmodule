@@ -76,21 +76,21 @@ resource "alicloud_instance" "instance" {
 }
 
 
-//resource "alicloud_key_pair" "pair" {
-//  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 )  : 0}"     # 生成一个秘钥
-//  key_name = "${var.key_name}"
-//  tags = "${var.tags}"
-//}
-//
-//data "alicloud_instances" "instance" {
-//  tags = "${var.tags}"
-//  depends_on = ["alicloud_instance.instance"]
-//}
-//
-//resource "alicloud_key_pair_attachment" "attachment" {
-//  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
-//  key_name     = "${alicloud_key_pair.pair.0.id}"                          # 类似于拿哪个来绑定实例
-//  instance_ids = "${data.alicloud_instances.instance.instances.*.id}"
-//}
+resource "alicloud_key_pair" "pair" {
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 )  : 0}"     # 生成一个秘钥
+  key_name = "${var.key_name}"
+  tags = "${var.tags}"
+}
+
+data "alicloud_instances" "instance" {
+  tags = "${var.tags}"
+  depends_on = ["alicloud_instance.instance"]
+}
+
+resource "alicloud_key_pair_attachment" "attachment" {
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  key_name     = "${alicloud_key_pair.pair.0.id}"                          # 类似于拿哪个来绑定实例
+  instance_ids = "${data.alicloud_instances.instance.instances.*.id}"
+}
 
 
