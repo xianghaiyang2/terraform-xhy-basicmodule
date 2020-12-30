@@ -53,6 +53,15 @@ data "alicloud_images" "images_ds" {
 }
 
 
+//data "alicloud_zones" "instancezones_ds" {
+//  available_instance_type = "${var.ecs_type}"
+//  available_resource_creation = "Instance"
+//}
+
+
+
+
+
 
 resource "alicloud_instance" "instance" {
   count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
