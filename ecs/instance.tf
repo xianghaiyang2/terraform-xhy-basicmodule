@@ -53,6 +53,18 @@ data "alicloud_images" "images_ds" {
 }
 
 
+# 指定规格实例的可用区
+//data "alicloud_zones" "instancezones_ds" {
+//  available_instance_type = "${var.ecs_type}"
+//  available_resource_creation = "Instance"
+//}
+//
+//
+//data "alicloud_vswitches" "vswitches" {
+//  count    = "${len(data.alicloud_zones.instancezones_ds)}"
+//  vpc_id   = "${var.vpc_id}"
+//  zone_id  = "${data.alicloud_zones.instancezones_ds.zones[count.index].id}"
+
 
 
 resource "alicloud_instance" "instance" {

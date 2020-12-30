@@ -15,9 +15,9 @@ variable "vpc_id" {
 
 
 
-variable "vswitch_ids" {
-  type = "list"
 
+variable "vswitch_ids" {
+  description = "请给我列表[]"
 }
 
 

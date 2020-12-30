@@ -106,6 +106,10 @@ variable "slave_zone_id" {
   default = "cn-chengdu-b"
 }
 
+variable "slbvswitch_id" {
+  default = ""
+}
+
 variable "address_type" {
   default = "intranet"
 }
@@ -358,7 +362,7 @@ variable "image_name" {
 }
 
 
-variable "vswitch_id" {
+variable "ecsvswitch_id" {
   default = ""
 }
 

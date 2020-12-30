@@ -1,4 +1,5 @@
 
+
 resource "alicloud_slb" "slb" {
   count = "${var.use_slb_module ? 1 : 0}"
   name = "${var.slb_name}"
@@ -43,6 +44,7 @@ resource "alicloud_slb_attachment" "connect" {
   load_balancer_id = "${data.alicloud_slbs.slb.slbs.0.id}"
   instance_ids     = "${var.instance_id}"   #  后来
 }
+
 
 
 
