@@ -60,8 +60,9 @@ data "alicloud_zones" "instancezones_ds" {
 
 
 data "alicloud_vswitches" "vswitches" {
+  count    = "${len(data.alicloud_zones.instancezones_ds)}"
   vpc_id   = "${var.vpc_id}"
-  zone_id  = "${data.alicloud_zones.instancezones_ds.ids}"
+  zone_id  = "${data.alicloud_zones.instancezones_ds.zones[count.index].id}"
 }
 
 
