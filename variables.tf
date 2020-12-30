@@ -357,6 +357,9 @@ variable "image_name" {
 }
 
 
+variable "vswitch_id" {
+  default = ""
+}
 
 
 
