@@ -370,7 +370,9 @@ variable "eip_instance_charge_type" {
   default = "PostPaid"
 }
 
-variable "eip_vswitch_id" {}
+variable "eip_vswitch_id" {
+  default = ""
+}
 
 variable "instance_id" {
   default = ""
