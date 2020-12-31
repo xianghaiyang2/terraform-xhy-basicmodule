@@ -7,7 +7,7 @@ resource "alicloud_eip" "eip" {
   isp                   = "${var.isp}"                                 # BGP
   instance_charge_type  = "${var.eip_instance_charge_type}"            # PostPaid
   tags                  = "${var.tags}"                                # tags
-  vswitch_id            = element(distinct(compact(concat(var.vswitch_ids))), 0)
+//  vswitch_id            = element(distinct(compact(concat(var.vswitch_ids))), 0)
 }
 
 
