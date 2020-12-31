@@ -26,6 +26,10 @@ variable "mongo_count" {
   default = 1
 }
 
+variable "eip_count" {
+  default = 1
+}
+
 variable "use_ecs_module" {
   default = true
 }
@@ -128,7 +132,7 @@ variable "slb_name" {
 //  default = "cn-chengdu-b"
 //}
 
-variable "slbvswitch_id" {
+variable "slb_vswitch_id" {
   default = ""
 }
 
@@ -345,6 +349,11 @@ variable "is_enabled" {
 
 
 # ========================EIP===========================
+
+variable "eip_name" {
+  default = "xhy_test"
+}
+
 variable "eip_internet_charge_type" {
   default = "PayByTraffic"
 }
@@ -359,6 +368,12 @@ variable "isp" {
 
 variable "eip_instance_charge_type" {
   default = "PostPaid"
+}
+
+variable "eip_vswitch_id" {}
+
+variable "instance_id" {
+  default = ""
 }
 
 
@@ -378,7 +393,7 @@ variable "image_name" {
 }
 
 
-variable "ecsvswitch_id" {
+variable "ecs_vswitch_id" {
   default = ""
 }
 

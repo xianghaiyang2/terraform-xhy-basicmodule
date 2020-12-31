@@ -24,7 +24,7 @@ module "ecs" {
   ecs_count = "${var.ecs_count}"
   use_ecs_module = "${var.use_ecs_module}"
   vpc_id = "${module.vpc.vpc_id}"                                # 这里是引用别的module资源，途径是output
-  vswitch_ids = "${var.ecsvswitch_id != "" ? [var.ecsvswitch_id] : module.vpc.vswitch_ids}"          # 这里是引用别的module资源，途径是output
+  vswitch_ids = "${var.ecs_vswitch_id != "" ? [var.ecs_vswitch_id] : module.vpc.vswitch_ids}"          # 这里是引用别的module资源，途径是output
   availability_zones = "${module.vpc.availability_zones}"
   security_group_name = "${var.security_group_name}"
   nic_type = "${var.nic_type}"
@@ -54,7 +54,7 @@ module "slb" {
   specification = "${var.specification}"
   delete_protection = "${var.delete_protection}"
   internet_charge_type = "${var.internet_charge_type}"
-  vswitch_ids = "${var.slbvswitch_id != "" ? [var.slbvswitch_id] : module.vpc.vswitch_ids}"    # 传值则用值创建，否则就用第一台创建
+  vswitch_ids = "${var.slb_vswitch_id != "" ? [var.slb_vswitch_id] : module.vpc.vswitch_ids}"    # 传值则用值创建，否则就用第一台创建
   tags = "${var.tags}"
   instance_id = "${module.ecs.instance_ids}"
 }
@@ -83,12 +83,17 @@ module "mongo" {
 
 
 
-//module "eip" {
-//  source = "./eip"
-//  use_eip_module = "${var.use_eip_module}"
-//  bandwidth = "${var.bandwidth}"
-//  eip_internet_charge_type = "${var.eip_internet_charge_type}"
-//  isp = "${var.isp}"
-//  eip_instance_charge_type = "${var.eip_instance_charge_type}"
-//  tags = "${var.tags}"
-//}
+module "eip" {
+  source = "./eip"
+  use_eip_module = "${var.use_eip_module}"
+  bandwidth = "${var.bandwidth}"
+  eip_internet_charge_type = "${var.eip_internet_charge_type}"
+  isp = "${var.isp}"
+  eip_instance_charge_type = "${var.eip_instance_charge_type}"
+  vswitch_ids    = "${var.eip_vswitch_id != "" ? [var.eip_vswitch_id] : module.vpc.vswitch_ids}"
+  tags = "${var.tags}"
+  delete_protection = "${var.delete_protection}"
+  eip_count = "${var.eip_count}"
+  eip_name = "${var.eip_name}"
+  instance_id = "${var.instance_id}"
+}
