@@ -12,7 +12,7 @@ resource "alicloud_mongodb_instance" "mongodb" {
   account_password     = "${var.account_password}"                          # 密码
   security_ip_list     = ["${var.security_ip_list}"]                       # 白名单,这里方案是设置成vpc的ip网段
 
-  backup_time          = "${var.backup_time}"
+//  backup_time          = "${var.backup_time}"
 //  backup_period        = "${var.backup_period}"
   tags                 = "${var.tags}"
 }

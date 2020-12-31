@@ -22,7 +22,7 @@ variable "security_ip_list" {}
 
 variable "engine_version" {}
 
-variable "backup_time" {}
+//variable "backup_time" {}
 
 //variable "backup_period" {}
 

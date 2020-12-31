@@ -474,6 +474,6 @@ variable "mongo_engine_version" {
 //  default = "Saturday"
 //}
 
-variable "mongo_backup_time" {
-  default = "03:00Z-05:00Z"
-}
+//variable "mongo_backup_time" {
+//  default = "03:00Z-05:00Z"
+//}
