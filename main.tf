@@ -29,7 +29,7 @@ module "ecs" {
   security_group_name = "${var.security_group_name}"
   nic_type = "${var.nic_type}"
   ecs_type = "${var.ecs_type}"
-  deletion_protection = "${var.deletion_protection}"
+  delete_protection = "${var.delete_protection}"
   ecs_instance_charge_type = "${var.ecs_instance_charge_type}"
   disk_size = "${var.disk_size}"
   system_disk_size = "${var.system_disk_size}"
@@ -40,7 +40,7 @@ module "ecs" {
   key_name = "${var.key_name}"
   disk_category = "${var.disk_category}"
   tags = "${var.tags}"
-  ecs_count_format = "${var.ecs_count_format}"
+  count_format = "${var.ecs_count_format}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
 
 }
@@ -61,7 +61,25 @@ module "slb" {
 
 
 
-
+module "mongo" {
+  source = "./db/mongo"
+  use_mongodb_module = "${var.use_mongo_module}"
+  instance_count   = "${var.mongo_count}"
+  instance_name = "${var.mongo_name}"
+  db_instance_class = "${var.mongo_instance_class}"
+  db_instance_storage = "${var.mongo_instance_storage}"
+  replication_factor = "${var.mongo_replication_factor}"
+  instance_charge_type = "${var.mongo_instance_charge_type}"
+  vswitch_ids  = "${var.mongo_vswitch_id != "" ? [var.mongo_vswitch_id] : module.vpc.vswitch_ids}"
+  account_password = "${var.mongo_account_password}"
+  security_ip_list = "${module.vpc.vpc_cidr_block}"
+  engine_version = "${var.mongo_engine_version}"
+  tags = "${var.tags}"
+  backup_period = "${var.mongo_backup_period}"
+  backup_time = "${var.mongo_backup_time}"
+  count_format = "${var.ecs_count_format}"
+  delete_protection = "${var.delete_protection}"
+}
 
 
 

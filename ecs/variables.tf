@@ -30,7 +30,7 @@ variable "availability_zones" {
 }
 
 
-variable "ecs_count_format" {
+variable "count_format" {
   description = ""
 }
 
@@ -69,7 +69,7 @@ variable "internet_max_bandwidth_out" {
 
 }
 
-variable "deletion_protection" {
+variable "delete_protection" {
 
 }
 

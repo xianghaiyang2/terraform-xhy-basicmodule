@@ -9,12 +9,21 @@ variable "profile" {
 }
 
 #resource management
+
+variable "delete_protection" {
+  default = "false"
+}
+
 variable "rds_count" {
   default = 2
 }
 
 variable "ecs_count" {
   default = 2
+}
+
+variable "mongo_count" {
+  default = 1
 }
 
 variable "use_ecs_module" {
@@ -33,6 +42,11 @@ variable "use_oss_module" {
   default = true
 }
 
+variable "count_format" {
+  default = "%02d"
+}
+
+
 variable "which_bucket_for_uploading" {
   description = "1 means the first bucket,such as bucket name buc0"
   default = 1
@@ -45,6 +59,11 @@ variable "use_ram_module" {
 variable "use_rds_module" {
   default = true
 }
+
+variable "use_mongo_module" {
+  default = true
+}
+
 
 variable "use_slb_module" {
   default = true
@@ -118,9 +137,7 @@ variable "specification" {
   default = "slb.s2.small"
 }
 
-variable "delete_protection" {
-  default = "false"
-}
+
 
 variable "internet_charge_type" {
   default = "PayByTraffic"
@@ -147,9 +164,7 @@ variable "rds_name" {
   default = "xhysafasdf_test"
 }
 
-variable "count_format" {
-  default = "%02d"
-}
+
 
 variable "engine_version" {
   default = "5.7"
@@ -395,9 +410,7 @@ variable "internet_max_bandwidth_out" {
   default = 0
 }
 
-variable "deletion_protection" {
-  default = false
-}
+
 
 variable "disk_category" {
   default = "cloud_efficiency"
@@ -420,6 +433,46 @@ variable "nic_type" {
 }
 
 
-# =============myself add =======================
+
+# ==============mongodb===============
 
 
+variable "mongo_name" {
+  default = "xhy_test"
+}
+
+variable "mongo_instance_class" {
+  default = "dds.mongo.mid"
+}
+
+variable "mongo_instance_storage" {
+  default = "10"
+}
+
+variable "mongo_replication_factor" {
+  default = "3"
+}
+
+variable "mongo_instance_charge_type" {
+  default = "PostPaid"
+}
+
+variable "mongo_vswitch_id" {
+  default = ""
+}
+
+variable "mongo_account_password" {
+  default = "Xhy18473962265"
+}
+
+variable "mongo_engine_version" {
+  default = "4.2"
+}
+
+variable "mongo_backup_period" {
+  default = "Saturday"
+}
+
+variable "mongo_backup_time" {
+  default = "03:00Z-05:00Z"
+}
