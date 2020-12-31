@@ -470,10 +470,9 @@ variable "mongo_engine_version" {
   default = "4.2"
 }
 
-variable "mongo_backup_period" {
-  type = string
-  default = ["Saturday"]
-}
+//variable "mongo_backup_period" {
+//  default = "Saturday"
+//}
 
 variable "mongo_backup_time" {
   default = "03:00Z-05:00Z"

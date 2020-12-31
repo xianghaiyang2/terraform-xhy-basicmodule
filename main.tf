@@ -75,7 +75,7 @@ module "mongo" {
   security_ip_list = "${module.vpc.vpc_cidr_block}"
   engine_version = "${var.mongo_engine_version}"
   tags = "${var.tags}"
-  backup_period = "${var.mongo_backup_period}"
+//  backup_period = "${var.mongo_backup_period}"
   backup_time = "${var.mongo_backup_time}"
   count_format = "${var.count_format}"
   delete_protection = "${var.delete_protection}"
