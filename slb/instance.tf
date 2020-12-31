@@ -30,8 +30,8 @@ resource "alicloud_slb_listener" "listen" {
 
   sticky_session = "on"              # 会话保持
   sticky_session_type = "insert"     # 如果sticky_session_tuype设置为on，该值必须设置
-  cookie_timeout = 60*24*7
-  cookie = "It only contains characters such as ASCII codes"
+  cookie_timeout = 10080
+  cookie = "containscharacterssuchasASCIIcodes"
 
   health_check = "on"
   health_check_connect_port = 80

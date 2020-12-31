@@ -98,13 +98,13 @@ variable "slb_name" {
   default = "xhy_safasfastest"
 }
 
-variable "master_zone_id" {
-  default = "cn-chengdu-a"
-}
-
-variable "slave_zone_id" {
-  default = "cn-chengdu-b"
-}
+//variable "master_zone_id" {
+//  default = "cn-chengdu-a"
+//}
+//
+//variable "slave_zone_id" {
+//  default = "cn-chengdu-b"
+//}
 
 variable "slbvswitch_id" {
   default = ""
