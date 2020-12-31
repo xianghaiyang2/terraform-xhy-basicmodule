@@ -378,6 +378,15 @@ variable "instance_id" {
   default = ""
 }
 
+variable "eip_tags" {
+  type = "map"
+  default = {
+    name   = "haode"
+    team  = "haode"
+    forwhat = "haode"
+
+  }
+}
 
 
 

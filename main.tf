@@ -91,7 +91,7 @@ module "eip" {
   isp = "${var.isp}"
   eip_instance_charge_type = "${var.eip_instance_charge_type}"
   vswitch_ids    = "${var.eip_vswitch_id != "" ? [var.eip_vswitch_id] : module.vpc.vswitch_ids}"
-  tags = "${var.tags}"
+  tags = "${var.eip_tags}"
   delete_protection = "${var.delete_protection}"
   eip_count = "${var.eip_count}"
   eip_name = "${var.eip_name}"

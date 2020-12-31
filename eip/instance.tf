@@ -15,4 +15,5 @@ resource "alicloud_eip_association" "eip_asso" {
   count                 = "${var.use_eip_module ? (var.eip_count != 0 ? var.eip_count : (var.delete_protection ? 1 : 0)) :0}"
   instance_id           = "${var.instance_id}"                         # ECS or SLB instance or Nat Gateway
   allocation_id         = element(distinct(compact(concat(alicloud_eip.eip.*.id))), count.index)
+  private_ip_address    = element(distinct(compact(concat(var.vswitch_ids))), 0)
 }
