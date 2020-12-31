@@ -42,16 +42,6 @@ variable "use_oss_module" {
   default = true
 }
 
-variable "count_format" {
-  default = "%02d"
-}
-
-
-variable "which_bucket_for_uploading" {
-  description = "1 means the first bucket,such as bucket name buc0"
-  default = 1
-}
-
 variable "use_ram_module" {
   default = true
 }
@@ -72,6 +62,19 @@ variable "use_slb_module" {
 variable "use_vpc_module" {
   default = true
 }
+
+
+variable "count_format" {
+  default = "%02d"
+}
+
+
+variable "which_bucket_for_uploading" {
+  description = "1 means the first bucket,such as bucket name buc0"
+  default = 1
+}
+
+
 
 
 

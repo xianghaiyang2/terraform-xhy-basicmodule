@@ -7,7 +7,7 @@ resource "alicloud_slb" "slb" {
   specification = "${var.specification}"                     # 规格
 //  master_zone_id = "${var.master_zone_id}"
 //  slave_zone_id = "${var.slave_zone_id}"
-  delete_protection = "${var.delete_protection}"             # 取消删除保护
+  delete_protection = "off"                                  # 取消删除保护
   internet_charge_type = "${var.internet_charge_type}"       # 后付费
   vswitch_id = element(distinct(compact(concat(var.vswitch_ids))), 0)
   tags = "${var.tags}"
