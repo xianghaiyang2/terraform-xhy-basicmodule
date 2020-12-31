@@ -471,6 +471,7 @@ variable "mongo_engine_version" {
 }
 
 variable "mongo_backup_period" {
+  type = string
   default = "Saturday"
 }
 
