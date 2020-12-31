@@ -1,6 +1,6 @@
 //adfadfaf
 provider "alicloud" {
-  version = "1.108.0"
+//  version = "1.108.0"
   region = "${var.region}"
   profile = "${var.profile}"
 //  configuration_source = "xianghaiyang/terraform-xhy-basicmodule"
@@ -40,7 +40,7 @@ module "ecs" {
   key_name = "${var.key_name}"
   disk_category = "${var.disk_category}"
   tags = "${var.tags}"
-  count_format = "${var.ecs_count_format}"
+  count_format = "${var.count_format}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
 
 }
@@ -77,7 +77,7 @@ module "mongo" {
   tags = "${var.tags}"
   backup_period = "${var.mongo_backup_period}"
   backup_time = "${var.mongo_backup_time}"
-  count_format = "${var.ecs_count_format}"
+  count_format = "${var.count_format}"
   delete_protection = "${var.delete_protection}"
 }
 

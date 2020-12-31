@@ -364,9 +364,7 @@ variable "eip_instance_charge_type" {
 
 
 # =========================ECS=========================
-variable "ecs_count_format" {
-  default = "%02d"
-}
+
 
 variable "image_owners" {
   default = "system"
