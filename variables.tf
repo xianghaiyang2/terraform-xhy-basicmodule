@@ -111,7 +111,7 @@ variable "slbvswitch_id" {
 }
 
 variable "address_type" {
-  default = "internet"
+  default = "intranet"
 }
 
 variable "specification" {

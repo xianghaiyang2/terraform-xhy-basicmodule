@@ -21,47 +21,23 @@ data "alicloud_slbs" "slb" {
 }
 
 resource "alicloud_slb_listener" "listen" {
-//  count = "${var.use_slb_module ? 1 : (var.delete_protection ? 1 : 0) }"
-//  load_balancer_id = "${data.alicloud_slbs.slb.slbs.0.id}"
-//  frontend_port = 80
-//  backend_port = 80
-//  protocol = "http"
-//  bandwidth = -1
-//
-//  sticky_session = "on"              # 会话保持
-//  sticky_session_type = "insert"     # 如果sticky_session_tuype设置为on，该值必须设置
-//  cookie_timeout = 10080
-//  cookie = "containscharacters"
-//
-//  health_check = "on"
-//  health_check_type = "tcp"
-//  health_check_connect_port = 80
-//  health_check_http_code = "http_2xx,http_3xx"
   count = "${var.use_slb_module ? 1 : (var.delete_protection ? 1 : 0) }"
-  load_balancer_id          = alicloud_slb.slb.0.id
-  backend_port              = 80
-  frontend_port             = 80
-  # 监听类型是tcp协议
-  protocol                  = "tcp"
-  bandwidth                 = 10
-  description               = "tcp监听"
-  sticky_session            = "on"
-  sticky_session_type       = "insert"
-  cookie_timeout            = 86400
-  cookie                    = "testslblistenercookie"
+  load_balancer_id = "${data.alicloud_slbs.slb.slbs.0.id}"
+  frontend_port = 80
+  backend_port = 80
+  protocol = "http"
+  bandwidth = -1
 
-  health_check              = "on"
-  health_check_type         = "http"
-  health_check_domain       = "ali.com"
+  sticky_session = "on"              # 会话保持
+  sticky_session_type = "insert"     # 如果sticky_session_tuype设置为on，该值必须设置
+  cookie_timeout = 10080
+  cookie = "containscharacters"
+
+  health_check = "on"
+  health_check_type = "tcp"
   health_check_connect_port = 80
-  healthy_threshold         = 8
-  unhealthy_threshold       = 8
-  health_check_timeout      = 8
-  health_check_interval     = 5
-  health_check_http_code    = "http_2xx,http_3xx"
+  health_check_http_code = "http_2xx,http_3xx"
 
-  request_timeout = 80
-  idle_timeout    = 30
 
 }
 
