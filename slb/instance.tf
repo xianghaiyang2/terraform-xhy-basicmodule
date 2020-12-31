@@ -25,17 +25,28 @@ resource "alicloud_slb_listener" "listen" {
   load_balancer_id = "${data.alicloud_slbs.slb.slbs.0.id}"
   frontend_port = 80
   backend_port = 80
-  protocol = "http"
+  protocol = "tcp"
   bandwidth = -1
 
   sticky_session = "on"              # 会话保持
   sticky_session_type = "insert"     # 如果sticky_session_tuype设置为on，该值必须设置
   cookie_timeout = 10080
-  cookie = "containscharacterssuchasASCIIcodes"
+  cookie = "testcookie"
 
-  health_check = "on"
+//  health_check = "on"
+//  health_check_type = "tcp"
+//  health_check_connect_port = 80
+//  health_check_http_code = "http_2xx,http_3xx"
+  health_check              = "on"
+  health_check_type         = "http"
+  health_check_domain       = "ali.com"
   health_check_connect_port = 80
-  health_check_http_code = "http_2xx,http_3xx"
+  healthy_threshold         = 8
+  unhealthy_threshold       = 8
+  health_check_timeout      = 8
+  health_check_interval     = 5
+  health_check_http_code    = "http_2xx,http_3xx"
+
 }
 
 
