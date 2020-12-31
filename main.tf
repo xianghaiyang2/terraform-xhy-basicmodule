@@ -61,25 +61,25 @@ module "slb" {
 
 
 
-//module "mongo" {
-//  source = "./db/mongo"
-//  use_mongodb_module = "${var.use_mongo_module}"
-//  instance_count   = "${var.mongo_count}"
-//  instance_name = "${var.mongo_name}"
-//  db_instance_class = "${var.mongo_instance_class}"
-//  db_instance_storage = "${var.mongo_instance_storage}"
-//  replication_factor = "${var.mongo_replication_factor}"
-//  instance_charge_type = "${var.mongo_instance_charge_type}"
-//  vswitch_ids  = "${var.mongo_vswitch_id != "" ? [var.mongo_vswitch_id] : module.vpc.vswitch_ids}"
-//  account_password = "${var.mongo_account_password}"
-//  security_ip_list = "${module.vpc.vpc_cidr_block}"
-//  engine_version = "${var.mongo_engine_version}"
-//  tags = "${var.tags}"
-//  backup_period = "${var.mongo_backup_period}"
-//  backup_time = "${var.mongo_backup_time}"
-//  count_format = "${var.count_format}"
-//  delete_protection = "${var.delete_protection}"
-//}
+module "mongo" {
+  source = "./db/mongo"
+  use_mongodb_module = "${var.use_mongo_module}"
+  instance_count   = "${var.mongo_count}"
+  instance_name = "${var.mongo_name}"
+  db_instance_class = "${var.mongo_instance_class}"
+  db_instance_storage = "${var.mongo_instance_storage}"
+  replication_factor = "${var.mongo_replication_factor}"
+  instance_charge_type = "${var.mongo_instance_charge_type}"
+  vswitch_ids  = "${var.mongo_vswitch_id != "" ? [var.mongo_vswitch_id] : module.vpc.vswitch_ids}"
+  account_password = "${var.mongo_account_password}"
+  security_ip_list = "${module.vpc.vpc_cidr_block}"
+  engine_version = "${var.mongo_engine_version}"
+  tags = "${var.tags}"
+  backup_period = "${var.mongo_backup_period}"
+  backup_time = "${var.mongo_backup_time}"
+  count_format = "${var.count_format}"
+  delete_protection = "${var.delete_protection}"
+}
 
 
 
