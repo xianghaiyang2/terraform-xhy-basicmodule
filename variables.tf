@@ -374,8 +374,10 @@ variable "eip_vswitch_id" {
   default = ""
 }
 
-variable "instance_id" {
-  default = ""
+
+
+variable "instance_ids" {
+  default = []
 }
 
 variable "eip_tags" {

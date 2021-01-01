@@ -95,5 +95,5 @@ module "eip" {
   delete_protection = "${var.delete_protection}"
   eip_count = "${var.eip_count}"
   eip_name = "${var.eip_name}"
-  instance_id = "${var.instance_id}"
+  instance_id = "${var.instance_ids}"
 }

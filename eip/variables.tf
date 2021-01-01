@@ -17,7 +17,7 @@ variable "isp" {}
 
 variable "eip_instance_charge_type" {}
 
-variable "vswitch_ids" {}
+
 
 variable "tags" {}
 

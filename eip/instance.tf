@@ -1,4 +1,6 @@
 
+
+# 一个eip只能绑定一个实例资源
 resource "alicloud_eip" "eip" {
   count                 = "${var.use_eip_module ? (var.eip_count != 0 ? var.eip_count : (var.delete_protection ? 1 : 0)) : 0}"
   name                  = "${var.eip_name}"
@@ -13,7 +15,9 @@ resource "alicloud_eip" "eip" {
 
 resource "alicloud_eip_association" "eip_asso" {
   count                 = "${var.use_eip_module ? (var.eip_count != 0 ? var.eip_count : (var.delete_protection ? 1 : 0)) :0}"
-  instance_id           = "${var.instance_id}"                         # ECS or SLB instance or Nat Gateway
+
+  # 支持输入NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、
+  #  辅助弹性网卡实例ID、高可用虚拟IP实例ID
+  instance_id           = element(distinct(compact(concat(var.instance_id))), count.index)
   allocation_id         = element(distinct(compact(concat(alicloud_eip.eip.*.id))), count.index)
-  private_ip_address    = element(distinct(compact(concat(var.vswitch_ids))), 0)
 }
