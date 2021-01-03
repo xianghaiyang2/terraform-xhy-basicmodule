@@ -1,6 +1,4 @@
 
-
-
 variable "use_slb_module" {}
 
 variable "slb_name" {}
