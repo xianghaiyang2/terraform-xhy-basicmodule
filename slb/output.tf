@@ -1,7 +1,7 @@
 output "slb_id" {
-  value = alicloud_slb.slb.*.id
+  value = data.alicloud_slbs.slb.*.id
 }
 
 output "slb_address" {
-  value = alicloud_slb.slb.*.id
+  value = data.alicloud_slbs.slb.*.address
 }
