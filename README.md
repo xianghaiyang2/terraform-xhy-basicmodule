@@ -98,15 +98,14 @@ module "basicmodule" {
 
  
 ```
-**NOTE:** This module using AccessKey and SecretKey are from `profile` and `shared_credentials_file`.
-If you have not set them yet, please install [aliyun-cli](https://github.com/aliyun/aliyun-cli#installation) and configure it.
+**NOTE:** 
 
 
 ## Conditional creation
 
-资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
-
-Only to create VPC:
+  资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
+  
+  只创建VPC:
 ```hcl
  {
   delete_protection   = false    # 资源保护
@@ -206,18 +205,5 @@ Only to create VPC:
 
 
 
-Authors
--------
-Created and maintained by xianwang.
-
-License
-----
- Mozilla Public License 2.0. See LICENSE for full details.
-
-Reference
----------
-* [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
-* [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)
-* [Terraform-Provider-Alicloud Docs](https://www.terraform.io/docs/providers/alicloud/index.html)
 
 
