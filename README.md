@@ -104,20 +104,18 @@ If you have not set them yet, please install [aliyun-cli](https://github.com/ali
 
 ## Conditional creation
 
-This moudle can create all resources, it is possible to use only one or more modules by using resource management parameters.
-For example：
+资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
 
 Only to create VPC:
 ```hcl
  {
-  use_ecs_module = false
-  use_eip_module = false
-  use_kms_module = false
-  use_oss_module = false
-  use_ram_module = false
-  use_rds_module = false
-  use_slb_module = false
-  use_vpc_module = true
+  delete_protection   = false    # 资源保护
+  use_vpc_module      = true
+  use_ecs_module      = false
+  use_slb_module      = false
+  use_eip_module      = false
+  use_mongo_module    = false
+
   }
 ```
 
