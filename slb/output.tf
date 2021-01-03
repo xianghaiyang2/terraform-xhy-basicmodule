@@ -1,7 +1,7 @@
 output "slb_id" {
-  value = "${data.alicloud_slbs.slb.slbs.0.id}"
+  value = alicloud_slb.slb.*.id
 }
 
 output "slb_address" {
-  value = "${data.alicloud_slbs.slb.slbs.0.address}"
+  value = alicloud_slb.slb.*.id
 }
