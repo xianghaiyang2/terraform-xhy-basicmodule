@@ -26,3 +26,5 @@ variable "tags" {
   description = "统一标签"
 
 }
+
+variable "count_format" {}

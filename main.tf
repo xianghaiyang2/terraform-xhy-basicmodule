@@ -15,6 +15,7 @@ module "vpc" {
   cidr_blocks = "${var.cidr_blocks}"
   availability_zones = "${var.availability_zones}"
   tags               = "${var.tags}"
+  count_format = "${var.count_format}"
 }
 
 

@@ -11,7 +11,7 @@ resource "alicloud_vpc" "vpc" {
 
 resource "alicloud_vswitch" "vswitch" {
   count             = "${var.use_vpc_module ? length(var.cidr_blocks) : 0}"    # 给几个网段就建立几个交换机
-  name              = "${var.vswitch_name}-${count.index+1}"
+  name              = "${var.vswitch_name}-${format(var.count_format, count.index+1)}"
   vpc_id            = "${alicloud_vpc.vpc.0.id}"
   # vpc_id(must)
   availability_zone = "${lookup(var.availability_zones,"check${count.index}")}"   # vpc的可用区(must)  count.index—与0此实例相对应的唯一索引号
