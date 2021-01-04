@@ -119,12 +119,16 @@ module "basicmodule" {
   
 **二、 基本使用**
 
-
-   将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
-   执行：
-   
-    #terraform init
-    #terraform apply
+   认证配置后，将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
+	 执行:
+	 
+	  #terraform init                           # 初始化（拉取GitHub源码，拉取alicloudAPI至你的工作根目录于.terraform中，所以若发生源码修改，必须删除.terraform文件重新初始化）
+    #terraform plan                           # 查看资源计划
+    #terraform apply                          # 执行/修改 你的资源结构
+    #terraform state list                     # 查看你的资源结构，并获取到 “结构路径”
+    #terraform destroy -target=“结构路径”      # 通过结构路径释放资源
+    #terraform destroy                        # 释放所有资源
+    #
 
 
 ## Conditional creation
