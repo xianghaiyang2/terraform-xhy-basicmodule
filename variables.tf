@@ -14,9 +14,7 @@ variable "delete_protection" {
   default = "false"
 }
 
-variable "rds_count" {
-  default = 2
-}
+
 
 variable "ecs_count" {
   default = 2
@@ -425,7 +423,7 @@ variable "internet_max_bandwidth_out" {
 
 
 
-variable "disk_category" {
+variable "system_disk_category" {
   default = "cloud_efficiency"
 }
 

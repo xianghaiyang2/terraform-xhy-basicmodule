@@ -39,7 +39,7 @@ module "ecs" {
   image_name = "${var.image_name}"
   image_owners = "${var.image_owners}"
   key_name = "${var.key_name}"
-  disk_category = "${var.disk_category}"
+  disk_category = "${var.system_disk_category}"
   tags = "${var.tags}"
   count_format = "${var.count_format}"
   internet_max_bandwidth_out = "${var.internet_max_bandwidth_out}"
