@@ -1,19 +1,31 @@
 
 
-## Usage
+## 目录
+
+* [参数模板](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E5%8F%82%E6%95%B0%E6%A8%A1%E6%9D%BF)
+* [一、 认证配置](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%80%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE)
+* [二、 运行](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%BA%8C-%E8%BF%90%E8%A1%8C)
+* [三、 Tips](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%89tips)
+* [四、 Input ](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E5%9B%9B-inputs)
+* [官网 ](https://www.terraform.io/)
+
+
+
+
+## 参数模板
 ```hcl
 module "basicmodule" {
   source  = "git::https://github.com/xianghaiyang/terraform-xhy-basicmodule.git"
-  region = "cn-chengdu"
+ 
   profile = "default"
 ===============分割线===================
   #resource management
   delete_protection   = false
   use_vpc_module      = true
-  use_ecs_module      = true
-  use_slb_module      = true
-  use_eip_module      = true
-  use_mongo_module    = true
+  use_ecs_module      = false
+  use_slb_module      = false
+  use_eip_module      = false
+  use_mongo_module    = false
 ===============分割线===================
   #which_bucket_for_uploading = 1
   ecs_count           = 3
@@ -98,44 +110,115 @@ module "basicmodule" {
 
  
 ```
-**NOTE:** 
 
+## 一、认证配置
 
-## Conditional creation
-
-  资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
+   该项目使用环境变量进行认证
   
-  只创建VPC:
-```hcl
- {
-  delete_protection   = false    # 资源保护
-  use_vpc_module      = true
-  use_ecs_module      = false
-  use_slb_module      = false
-  use_eip_module      = false
-  use_mongo_module    = false
+    #set terraform environment
+    #export ALICLOUD_ACCESS_KEY="授权码"
+    #export ALICLOUD_SECRET_KEY="密钥"
+    #export ALICLOUD_REGION="cn-chengdu"
 
-  }
-```
+    #set terraform Log
+    #export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
+    #export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
+  
+  #set terraform init 加速
+  #如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
+  
+    #export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+  
+  
+## 二、 运行
+
+   认证配置后，将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
+   
+   执行:
+	 
+    #terraform init                           # 初始化（拉取GitHub源码，拉取alicloudAPI至你的工作根目录于.terraform中，所以若发生源码修改，必须删除.terraform文件重新初始化）
+    #terraform plan                           # 查看资源计划
+    #terraform apply                          # 执行/修改 你的资源结构
+    #terraform state list                     # 查看你的资源结构，并获取到 “结构路径”
+    #terraform destroy -target=“结构路径”      # 通过结构路径释放指定资源
+    #terraform destroy                        # 释放所有资源
+    #terraform apply -auto-approve            # 跳过yes确认直接执行
+    
+    
+## 三、Tips
+    
+   ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑
+   
+   ②关于vpc：      后台逻辑支持创建一个vpc，之后的基本所有资源都是在该vpc下，如若同一地区还需要建立多个vpc,可新建工作目录更改资源名称等，重新terraform init 
+   
+   ③关于vswitch：  后台逻辑在每个可用区下均创建一个vswitch，你需要提供该地区下的可用区情况作为参数
+   
+   ④关于ECS：      后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的ECS。如若未指定交换机，将在随机交换机下创建指定数量的ECS
+   
+   ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网（可调整）slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS
+   
+   ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
+   
+   ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
 
-## Inputs
+**一、 认证配置**
+**二、 基本使用**
+**二、 Tips**
+
+  
+  
+## 四、 Inputs
+
+    注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| region  | The region ID used to launch this module resources. If not set, it will be sourced from followed by ALICLOUD_REGION environment variable and profile | string  | ''  | no  |
-| profile  | The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable. | string  | ''  | no  |
-| rds_count  | The number of rds to be created.  | int  | 2  | if using rds module,it should be set.  |
-| ecs_count  | The number of ecs to be created.| int  | 2  | if using ecs module,it should be set.   |
-| use_ecs_module  | Whether to use ecs sub-module.  | bool | true | no  |
-| use_eip_module  | Whether to use eip sub-module.   | bool  | true  | no  |
-| use_kms_module  | Whether to use kms sub-module.   | bool  | true  | no  |
-| use_oss_module  | Whether to use oss sub-module.   | bool  | true  | no  |
+| source | module的源码位置 | string |复制即可 | yes | 
+| region  | 用于设定动作的覆盖地区，如cn-chengdu cn-beijing，如果未传该值，可在环境变量中设置export ALICLOUD_REGION="cn-chengdu" | string  | 'cn-chengdu'  | no  |
+| profile  | 集中存放环境变量的文件，如果未设置，可在全局环境变量中设置 | string  | ''  | no  |
+| delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  |  false  | no  |
+| use_vpc_module | 是否使用vpc资源   | bool  |  true  | no  |
+| use_ecs_module  | 是否使用ECS资源 | bool |  true | no  |
+| use_slb_module | 是否使用slb资源   | bool  |  true  | no  |
+| use_eip_module | 是否使用eip资源   | bool  |  true  | no  |
+| use_mongo_module | 是否使用mongodb资源   | bool  | true  | no  |
+| ecs_count  | 需要创建ecs实例的数量| int  |  2  |  use_ecs_module设置为true时，该参数必须设置 |
+| eip_count  | 需要创建eip资源的数量| int  |  1  |  use_eip_module设置为true时，该参数必须设置 |
+| mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
+| tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
+
+    # VPC
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| vpc_name | vpc名字| string |  "" |  |
+| vswitch_name | 交换机名字| string  | "" |   |
+| vpc_cidr | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |   |
+| cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
+| availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+
+    # ECS
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
+| image_name | 镜像名字（匹配） | string  | "^centos_7_06_64" |   |
+| ecs_name | 所要创建实例命名 | string | "xhy_test" |   |
+| ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |   |
+| key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |   |
+| ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |   |
+| ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" |   |
+| internet_max_bandwidth_out | 向公网输出的最大宽带 [0 , 100]| string  | "0" |   |
+| system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |   |
+| system_disk_size | 系统盘大小   | string  | "40" |   |
+| security_group_name | 安全组名称| string  | "xhy_test" |   |
+| nic_type | vpc网段| string  | "172.16.0.0/12" |   |
+| ecs_vswitch_id | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} | no |
+
+| system_disk_size | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+|   | Whether to use oss sub-module.   | bool  | true  | no  |
 | which_bucket_for_uploading  | Due to which bucket for uploading,if you set 1 that means the first bucket you created.   | int  | 1  | if using oss module,it should be set  |
-| use_ram_module  | Whether to use ram sub-module.   | bool  | true  | no  |
-| use_rds_module  | Whether to use rds sub-module.   | bool  | true  | no  |
-| use_slb_module  | Whether to slb kms sub-module.   | bool  | true  | no  |
-| use_vpc_module  | Whether to vpc kms sub-module.   | bool  | true  | no  |
+
+
 | tag  | A mapping of tags to assign to all resources if it can be set tag.   | map  | { app   = "客户端",owner = "bestpractice",team  = "rds",name  = "arthur" }  | no  |
 | availability_zones  | The availability zones for vpc,it can be set one or more. | map  | {   az0 = "cn-shanghai-e",az1 = "cn-shanghai-f",az2 = "cn-shanghai-g"} | no  |
 | cidr_blocks  | The cidr_block for vswitch,it can be set one or more. | map  | {az0 = "10.99.0.0/21",az1 = "10.99.8.0/21",az2 = "10.99.16.0/21"}  | no  |
