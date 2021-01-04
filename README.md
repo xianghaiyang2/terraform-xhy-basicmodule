@@ -1,19 +1,19 @@
 
 
-## Usage
+## 参数传入
 ```hcl
 module "basicmodule" {
   source  = "git::https://github.com/xianghaiyang/terraform-xhy-basicmodule.git"
-  region = "cn-chengdu"
+ 
   profile = "default"
 ===============分割线===================
   #resource management
   delete_protection   = false
   use_vpc_module      = true
-  use_ecs_module      = true
-  use_slb_module      = true
-  use_eip_module      = true
-  use_mongo_module    = true
+  use_ecs_module      = false
+  use_slb_module      = false
+  use_eip_module      = false
+  use_mongo_module    = false
 ===============分割线===================
   #which_bucket_for_uploading = 1
   ecs_count           = 3
@@ -98,7 +98,24 @@ module "basicmodule" {
 
  
 ```
-**NOTE:** 
+**一、 认证配置** 
+  该项目使用的环境变量进行认证
+    #set terraform environment
+  export ALICLOUD_ACCESS_KEY="授权码"
+  export ALICLOUD_SECRET_KEY="密钥"
+  export ALICLOUD_REGION="cn-chengdu"
+
+    # set terraform Log
+  export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
+  export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
+  
+  #set terraform init 加速
+  #如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
+  export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+  
+  
+**二、 基本使用**
+  将参数复制到任意目录如： ~/project/main.tf
 
 
 ## Conditional creation
