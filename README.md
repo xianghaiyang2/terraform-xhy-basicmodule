@@ -100,7 +100,7 @@ module "basicmodule" {
 ```
 **一、 认证配置** 
 
-    该项目使用环境变量进行认证
+   该项目使用环境变量进行认证
   
     #set terraform environment
     #export ALICLOUD_ACCESS_KEY="授权码"
@@ -119,7 +119,12 @@ module "basicmodule" {
   
 **二、 基本使用**
 
-    将参数复制到任意目录如： ~/project/main.tf
+
+   将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
+   执行：
+   
+    #terraform init
+    #terraform apply
 
 
 ## Conditional creation
