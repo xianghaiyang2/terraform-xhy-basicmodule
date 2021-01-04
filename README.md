@@ -4,7 +4,7 @@
 
 * [参数模板](https://www.terraform.io/docs/providers/alicloud/r/instance.html)
 * [一、 认证配置](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%80%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE)
-* [二、 运行](https://www.terraform.io/docs/providers/alicloud/r/kms_key.html)
+* [二、 运行](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%BA%8C-%E8%BF%90%E8%A1%8C)
 * [三、 Tips](https://www.terraform.io/docs/providers/alicloud/r/oss_bucket.html)
 * [四、 Input ](https://www.terraform.io/docs/providers/alicloud/r/ram_access_key.html)
 
