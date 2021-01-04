@@ -2,109 +2,119 @@
 
 ## Usage
 ```hcl
-module "example" {
-  source = "module "basicmodule" {
-  source  = "app.terraform.io/xianghaiyang/basicmodule/xhy"
-  #Main
-  region = "cn-shanghai"
+module "basicmodule" {
+  source  = "git::https://github.com/xianghaiyang/terraform-xhy-basicmodule.git"
+  region = "cn-chengdu"
   profile = "default"
-
+===============分割线===================
   #resource management
-  rds_count = 2
-  ecs_count = 2
-  use_ecs_module = true
-  use_eip_module = true
-  use_kms_module = true
-  use_oss_module = true
-  which_bucket_for_uploading = 1
-  use_ram_module = true
-  use_rds_module = true
-  use_slb_module = true
-  use_vpc_module = true
+  delete_protection   = false
+  use_vpc_module      = true
+  use_ecs_module      = true
+  use_slb_module      = true
+  use_eip_module      = true
+  use_mongo_module    = true
+===============分割线===================
+  #which_bucket_for_uploading = 1
+  ecs_count           = 3
+  mongo_count         = 2
+  eip_count           = 2
+===============分割线===================
   tags = {
-    app   = "客户端"
-    owner = "bestpractice"
-    team  = "rds"
-    name  = "arthur"
+    name   = "xhy"
+    team  = "devops"
+    forwhat = "test"
   }
-
+  
+================资源分割线=================
   #VPC
   availability_zones = {
-    az0 = "cn-shanghai-e"
-    az1 = "cn-shanghai-f"
-    az2 = "cn-shanghai-g"
+    check0       = "cn-chengdu-a"
+    check1       = "cn-chengdu-b"
   }
   cidr_blocks = {
-    az0 = "10.99.0.0/21"
-    az1 = "10.99.8.0/21"
-    az2 = "10.99.16.0/21"
+    check0       = "172.16.2.0/24"
+    check1       = "172.16.1.0/24"
   }
-  vpc_name = "webserver"
-  vpc_cidr = "10.99.0.0/19"
-
-
-
-  #RDS
-  instance_type = "rds.mysql.s3.large"
-  rds_name = "rds"
-  count_format = "%02d"
-  engine_version = "5.7"
-  engine = "MySQL"
-  instance_storage = "100"
-  instance_charge_type = "Postpaid"
-  rds_zone_id = "cn-shanghai-MAZ5(f,g)"
-
-  #db
-  db_description = ""
-
-  #db ccount
-  rds_account_name = "myuser"
-  rds_account_pwd = "Test1234"
-  account_type = "Super"
-  account_name = "miniapp"
-  character_set = "utf8"
-  account_privilege = "ReadWrite"
-
-
-
+  vpc_cidr       = "172.16.0.0/12"
+  vpc_name       = "xhy_test"
+  vswitch_name   = "xhy_test"
+  
+================资源分割线==================
   #ECS
-  ecs_count_format = "%02d"
   image_owners = "system"
   image_name = "^centos_7_06_64"
-  ecs_name = "test"
-  ecs_type = "ecs.c5.large"
-  key_name = "xianwang_key_pair_1121"
+  ecs_name = "xhy_test"
+  ecs_type = "ecs.s6-c1m1.small"
+  key_name = "xianghaiyang_key_pair"
   ecs_internet_charge_type = "PayByTraffic"
   ecs_instance_charge_type = "PostPaid"
   internet_max_bandwidth_out = 0
-  deletion_protection = false
   disk_category = "cloud_efficiency"
-  disk_size = "0"
+  #disk_size = "0"
   system_disk_size = "40"
-  security_group_name = "ali-sg-ec-sz"
+  security_group_name = "xhy_test"
   nic_type = "intranet"
+  #ecs_vswitch_id = "vsw-2vcljf0565s7qny6bwdur"
+  
+================资源分割线=================
+#SLB
+  slb_name = "xhy_test"
+  #master_zone_id = "cn-chengdu-a"
+  #slave_zone_id = "cn-chengdu-b"
+  address_type = "intranet"
+  specification = "slb.s2.small"
+  internet_charge_type = "PayByTraffic"
+  #slb_vswitch_id = ""
+
+
+
+================资源分割线=================
+  #mongo
+  mongo_name = "xhy_test"
+  mongo_instance_class = "dds.mongo.mid"
+  mongo_instance_storage = "10"
+  mongo_replication_factor = "3"
+  mongo_account_password = "Xhy18473962265"
+  mongo_engine_version = "4.2"
+  #mongo_vswitch_id = ""
+  
+================资源分割线=================
+  #EIP
+  eip_name                    = "xhy_test"
+  eip_internet_charge_type    = "PayByTraffic"
+
+  bandwidth                   = "2"
+  isp                         = "BGP"
+  eip_instance_charge_type    = "PostPaid"
+  instance_ids               = ["i-2vcaftjuyjwcic78gggi", "i-2vch1w0uwx9qqa053urj"]
+  eip_tags = {
+    name   = "haode"
+    team  = "haode"
+    forwhat = "haode"
+  }
+
 }
+
+ 
 ```
-**NOTE:** This module using AccessKey and SecretKey are from `profile` and `shared_credentials_file`.
-If you have not set them yet, please install [aliyun-cli](https://github.com/aliyun/aliyun-cli#installation) and configure it.
+**NOTE:** 
 
 
 ## Conditional creation
 
-This moudle can create all resources, it is possible to use only one or more modules by using resource management parameters.
-For example：
-
-Only to create VPC:
+  资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
+  
+  只创建VPC:
 ```hcl
  {
-  use_ecs_module = false
-  use_eip_module = false
-  use_kms_module = false
-  use_oss_module = false
-  use_ram_module = false
-  use_rds_module = false
-  use_slb_module = false
-  use_vpc_module = true
+  delete_protection   = false    # 资源保护
+  use_vpc_module      = true
+  use_ecs_module      = false
+  use_slb_module      = false
+  use_eip_module      = false
+  use_mongo_module    = false
+
   }
 ```
 
@@ -195,18 +205,5 @@ Only to create VPC:
 
 
 
-Authors
--------
-Created and maintained by xianwang.
-
-License
-----
- Mozilla Public License 2.0. See LICENSE for full details.
-
-Reference
----------
-* [Terraform-Provider-Alicloud Github](https://github.com/terraform-providers/terraform-provider-alicloud)
-* [Terraform-Provider-Alicloud Release](https://releases.hashicorp.com/terraform-provider-alicloud/)
-* [Terraform-Provider-Alicloud Docs](https://www.terraform.io/docs/providers/alicloud/index.html)
 
 
