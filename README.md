@@ -157,22 +157,31 @@ module "basicmodule" {
 
 ## Inputs
 
+    注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
+
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | source | module的源码位置 | string | 复制即可 | yes |
-| region  | The region ID used to launch this module resources. If not set, it will be sourced from followed by ALICLOUD_REGION environment variable and profile | string  | ''  | no  |
-| profile  | The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable. | string  | ''  | no  |
-| rds_count  | The number of rds to be created.  | int  | 2  | if using rds module,it should be set.  |
-| ecs_count  | The number of ecs to be created.| int  | 2  | if using ecs module,it should be set.   |
-| use_ecs_module  | Whether to use ecs sub-module.  | bool | true | no  |
+| region  | 用于设定动作的覆盖地区，如cn-chengdu cn-beijing，如果未传该值，可在环境变量中设置export ALICLOUD_REGION="cn-chengdu" | string  | 'cn-chengdu'  | no  |
+| profile  | 集中存放环境变量的文件，如果未设置，可在全局环境变量中设置 | string  | ''  | no  |
+| delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  | false  | no  |
+
+| use_vpc_module | 是否使用vpc资源   | bool  | true  | no  |
+| use_ecs_module  | 是否使用ECS资源 | bool | true | no  |
+| use_slb_module | 是否使用slb资源   | bool  | true  | no  |
+| use_eip_module | 是否使用eip资源   | bool  | true  | no  |
+| use_mongo_module | 是否使用mongodb资源   | bool  | true  | no  |
+
+| ecs_count  | 需要创建ecs实例的数量| int  | 2  |  use_ecs_module设置为true时，该参数必须设置 |
+
 | use_eip_module  | Whether to use eip sub-module.   | bool  | true  | no  |
-| use_kms_module  | Whether to use kms sub-module.   | bool  | true  | no  |
-| use_oss_module  | Whether to use oss sub-module.   | bool  | true  | no  |
+
+|   | Whether to use oss sub-module.   | bool  | true  | no  |
 | which_bucket_for_uploading  | Due to which bucket for uploading,if you set 1 that means the first bucket you created.   | int  | 1  | if using oss module,it should be set  |
-| use_ram_module  | Whether to use ram sub-module.   | bool  | true  | no  |
-| use_rds_module  | Whether to use rds sub-module.   | bool  | true  | no  |
-| use_slb_module  | Whether to slb kms sub-module.   | bool  | true  | no  |
-| use_vpc_module  | Whether to vpc kms sub-module.   | bool  | true  | no  |
+|  | Whether to use ram sub-module.   | bool  | true  | no  |
+|   | Whether to use rds sub-module.   | bool  | true  | no  |
+|  | Whether to slb kms sub-module.   | bool  | true  | no  |
+
 | tag  | A mapping of tags to assign to all resources if it can be set tag.   | map  | { app   = "客户端",owner = "bestpractice",team  = "rds",name  = "arthur" }  | no  |
 | availability_zones  | The availability zones for vpc,it can be set one or more. | map  | {   az0 = "cn-shanghai-e",az1 = "cn-shanghai-f",az2 = "cn-shanghai-g"} | no  |
 | cidr_blocks  | The cidr_block for vswitch,it can be set one or more. | map  | {az0 = "10.99.0.0/21",az1 = "10.99.8.0/21",az2 = "10.99.16.0/21"}  | no  |
