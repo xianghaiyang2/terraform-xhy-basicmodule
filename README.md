@@ -120,33 +120,33 @@ module "basicmodule" {
 **二、 基本使用**
 
    认证配置后，将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
-	 执行:
+   
+   执行:
 	 
-	  #terraform init                           # 初始化（拉取GitHub源码，拉取alicloudAPI至你的工作根目录于.terraform中，所以若发生源码修改，必须删除.terraform文件重新初始化）
+    #terraform init                           # 初始化（拉取GitHub源码，拉取alicloudAPI至你的工作根目录于.terraform中，所以若发生源码修改，必须删除.terraform文件重新初始化）
     #terraform plan                           # 查看资源计划
     #terraform apply                          # 执行/修改 你的资源结构
     #terraform state list                     # 查看你的资源结构，并获取到 “结构路径”
-    #terraform destroy -target=“结构路径”      # 通过结构路径释放资源
+    #terraform destroy -target=“结构路径”      # 通过结构路径释放指定资源
     #terraform destroy                        # 释放所有资源
-    #
+    #terraform apply -auto-approve            # 跳过yes确认直接执行
+    
+ **三、 Tips**
+    
+    ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑
+    ②关于vpc：      后台逻辑支持创建一个vpc，之后的基本所有资源都是在该vpc下，如若同一地区还需要建立多个vpc,可新建工作目录更改资源名称等，重新terraform init 
+    ③关于vswitch：  后台逻辑在每个可用区下均创建一个vswitch，你需要提供该地区下的可用区情况作为参数
+    ④关于ECS：      后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的ECS。如若未指定交换机，将在随机交换机下创建指定数量的ECS
+    ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网（可调整）slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS
+    ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加                     弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
+    ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
 
 ## Conditional creation
 
   资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
   
-  只创建VPC:
-```hcl
- {
-  delete_protection   = false    # 资源保护
-  use_vpc_module      = true
-  use_ecs_module      = false
-  use_slb_module      = false
-  use_eip_module      = false
-  use_mongo_module    = false
-
-  }
-```
+  
 
 
 ## Inputs
