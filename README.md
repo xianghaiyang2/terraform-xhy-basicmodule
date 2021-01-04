@@ -165,22 +165,42 @@ module "basicmodule" {
 | region  | 用于设定动作的覆盖地区，如cn-chengdu cn-beijing，如果未传该值，可在环境变量中设置export ALICLOUD_REGION="cn-chengdu" | string  | 'cn-chengdu'  | no  |
 | profile  | 集中存放环境变量的文件，如果未设置，可在全局环境变量中设置 | string  | ''  | no  |
 | delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  | false  | no  |
-
 | use_vpc_module | 是否使用vpc资源   | bool  | true  | no  |
 | use_ecs_module  | 是否使用ECS资源 | bool | true | no  |
 | use_slb_module | 是否使用slb资源   | bool  | true  | no  |
 | use_eip_module | 是否使用eip资源   | bool  | true  | no  |
 | use_mongo_module | 是否使用mongodb资源   | bool  | true  | no  |
-
 | ecs_count  | 需要创建ecs实例的数量| int  | 2  |  use_ecs_module设置为true时，该参数必须设置 |
+| eip_count  | 需要创建eip资源的数量| int  | 1  |  use_eip_module设置为true时，该参数必须设置 |
+| mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
+| tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
 
-| use_eip_module  | Whether to use eip sub-module.   | bool  | true  | no  |
+    # VPC
+| vpc_name | vpc名字| string  | "" |   |
+| vswitch_name | 交换机名字| string  | "" |   |
+| vpc_cidr | vpc网段| string  | "172.16.0.0/12" |   |
+| cidr_blocks | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
+| availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 
+    # ECS
+| image_owners | vpc名字| string  | "" |   |
+| image_name | 交换机名字| string  | "" |   |
+| ecs_name | vpc网段| string  | "172.16.0.0/12" |   |
+| ecs_type | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
+| key_name | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+| ecs_internet_charge_type | vpc名字| string  | "" |   |
+| ecs_instance_charge_type | 交换机名字| string  | "" |   |
+| internet_max_bandwidth_out | vpc网段| string  | "172.16.0.0/12" |   |
+| disk_category | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
+| system_disk_size | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+| security_group_name | 交换机名字| string  | "" |   |
+| nic_type | vpc网段| string  | "172.16.0.0/12" |   |
+| ecs_vswitch_id | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} | no |
+
+| system_disk_size | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 |   | Whether to use oss sub-module.   | bool  | true  | no  |
 | which_bucket_for_uploading  | Due to which bucket for uploading,if you set 1 that means the first bucket you created.   | int  | 1  | if using oss module,it should be set  |
-|  | Whether to use ram sub-module.   | bool  | true  | no  |
-|   | Whether to use rds sub-module.   | bool  | true  | no  |
-|  | Whether to slb kms sub-module.   | bool  | true  | no  |
+
 
 | tag  | A mapping of tags to assign to all resources if it can be set tag.   | map  | { app   = "客户端",owner = "bestpractice",team  = "rds",name  = "arthur" }  | no  |
 | availability_zones  | The availability zones for vpc,it can be set one or more. | map  | {   az0 = "cn-shanghai-e",az1 = "cn-shanghai-f",az2 = "cn-shanghai-g"} | no  |
