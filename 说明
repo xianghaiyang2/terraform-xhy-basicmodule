@@ -1,3 +1,5 @@
+一、 难点处理
+
 1. 试想思路：根据目的资源查询可用地区。将可用区作为交换机查询参数，得到可用区中的交换机(No)
 
 2. 变量的传递 ： 外层variable >> main函数的键 >> 内层variable的键 >> 最终被内层main.tf引用
@@ -11,3 +13,7 @@
 5. 根目录下的main.tf文件中的module下，有availability_zones = "${module.vpc.availability_zones}"
    通过module引用，实际是以根目录为基础，去引用各个子文件夹里的output.tf
 
+
+二、 各种资源创建方案
+
+1. vpc,vswitch 在指定的区域中，创建一个vpc
