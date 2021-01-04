@@ -100,7 +100,7 @@ module "basicmodule" {
 ```
 **一、 认证配置** 
 
-  该项目使用的环境变量进行认证
+    该项目使用环境变量进行认证
   
     #set terraform environment
     #export ALICLOUD_ACCESS_KEY="授权码"
