@@ -17,7 +17,7 @@ variable "isp" {}
 
 variable "eip_instance_charge_type" {}
 
-
+variable "count_format" {}
 
 variable "tags" {}
 

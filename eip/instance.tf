@@ -3,7 +3,7 @@
 # 一个eip只能绑定一个实例资源
 resource "alicloud_eip" "eip" {
   count                 = "${var.use_eip_module ? (var.eip_count != 0 ? var.eip_count : (var.delete_protection ? 1 : 0)) : 0}"
-  name                  = "${var.eip_name}"
+  name                  = "${var.eip_name}-${format(var.count_format, count.index+1)}"
   bandwidth             = "${var.bandwidth}"                           # 宽带值 Mbps
   internet_charge_type  = "${var.eip_internet_charge_type}"            # PayByTraffic
   isp                   = "${var.isp}"                                 # BGP
