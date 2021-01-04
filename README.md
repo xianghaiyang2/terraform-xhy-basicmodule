@@ -101,23 +101,25 @@ module "basicmodule" {
 **一、 认证配置** 
 
   该项目使用的环境变量进行认证
+  
     #set terraform environment
-  export ALICLOUD_ACCESS_KEY="授权码"
-  export ALICLOUD_SECRET_KEY="密钥"
-  export ALICLOUD_REGION="cn-chengdu"
+    #export ALICLOUD_ACCESS_KEY="授权码"
+    #export ALICLOUD_SECRET_KEY="密钥"
+    #export ALICLOUD_REGION="cn-chengdu"
 
-    # set terraform Log
-  export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
-  export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
+    #set terraform Log
+    #export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
+    #export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
   
   #set terraform init 加速
   #如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
-  export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+  
+    #export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
   
   
 **二、 基本使用**
 
-  将参数复制到任意目录如： ~/project/main.tf
+    将参数复制到任意目录如： ~/project/main.tf
 
 
 ## Conditional creation
