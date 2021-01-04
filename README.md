@@ -161,43 +161,43 @@ module "basicmodule" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| source | module的源码位置 | string | 复制即可 | yes |
+| source | module的源码位置 | string |复制即可 | yes | 
 | region  | 用于设定动作的覆盖地区，如cn-chengdu cn-beijing，如果未传该值，可在环境变量中设置export ALICLOUD_REGION="cn-chengdu" | string  | 'cn-chengdu'  | no  |
 | profile  | 集中存放环境变量的文件，如果未设置，可在全局环境变量中设置 | string  | ''  | no  |
-| delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  | false  | no  |
-| use_vpc_module | 是否使用vpc资源   | bool  | true  | no  |
-| use_ecs_module  | 是否使用ECS资源 | bool | true | no  |
-| use_slb_module | 是否使用slb资源   | bool  | true  | no  |
-| use_eip_module | 是否使用eip资源   | bool  | true  | no  |
+| delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  |  false  | no  |
+| use_vpc_module | 是否使用vpc资源   | bool  |  true  | no  |
+| use_ecs_module  | 是否使用ECS资源 | bool |  true | no  |
+| use_slb_module | 是否使用slb资源   | bool  |  true  | no  |
+| use_eip_module | 是否使用eip资源   | bool  |  true  | no  |
 | use_mongo_module | 是否使用mongodb资源   | bool  | true  | no  |
-| ecs_count  | 需要创建ecs实例的数量| int  | 2  |  use_ecs_module设置为true时，该参数必须设置 |
-| eip_count  | 需要创建eip资源的数量| int  | 1  |  use_eip_module设置为true时，该参数必须设置 |
+| ecs_count  | 需要创建ecs实例的数量| int  |  2  |  use_ecs_module设置为true时，该参数必须设置 |
+| eip_count  | 需要创建eip资源的数量| int  |  1  |  use_eip_module设置为true时，该参数必须设置 |
 | mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
 
     # VPC
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| vpc_name | vpc名字| string  | "" |   |
+| vpc_name | vpc名字| string |  "" |  |
 | vswitch_name | 交换机名字| string  | "" |   |
-| vpc_cidr | vpc网段| string  | "172.16.0.0/12" |   |
-| cidr_blocks | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
+| vpc_cidr | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |   |
+| cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
 | availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 
     # ECS
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| image_owners | vpc名字| string  | "" |   |
-| image_name | 交换机名字| string  | "" |   |
-| ecs_name | vpc网段| string  | "172.16.0.0/12" |   |
-| ecs_type | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
-| key_name | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
-| ecs_internet_charge_type | vpc名字| string  | "" |   |
-| ecs_instance_charge_type | 交换机名字| string  | "" |   |
-| internet_max_bandwidth_out | vpc网段| string  | "172.16.0.0/12" |   |
-| disk_category | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
-| system_disk_size | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
-| security_group_name | 交换机名字| string  | "" |   |
+| image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
+| image_name | 镜像名字（匹配） | string  | "^centos_7_06_64" |   |
+| ecs_name | 所要创建实例命名 | string | "xhy_test" |   |
+| ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |   |
+| key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |   |
+| ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |   |
+| ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" |   |
+| internet_max_bandwidth_out | 向公网输出的最大宽带 [0 , 100]| string  | "0" |   |
+| system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |   |
+| system_disk_size | 系统盘大小   | string  | "40" |   |
+| security_group_name | 安全组名称| string  | "xhy_test" |   |
 | nic_type | vpc网段| string  | "172.16.0.0/12" |   |
 | ecs_vswitch_id | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} | no |
 
