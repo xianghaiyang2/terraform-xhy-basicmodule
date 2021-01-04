@@ -1,6 +1,17 @@
 
 
-## 参数传入
+## 目录
+
+* [参数模板](https://www.terraform.io/docs/providers/alicloud/r/instance.html)
+* [一、 认证配置](https://www.terraform.io/docs/providers/alicloud/r/eip.html)
+* [二、 运行](https://www.terraform.io/docs/providers/alicloud/r/kms_key.html)
+* [三、 Tips](https://www.terraform.io/docs/providers/alicloud/r/oss_bucket.html)
+* [四、 Input ](https://www.terraform.io/docs/providers/alicloud/r/ram_access_key.html)
+
+
+
+
+## 参数模板
 ```hcl
 module "basicmodule" {
   source  = "git::https://github.com/xianghaiyang/terraform-xhy-basicmodule.git"
