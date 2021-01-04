@@ -6,7 +6,7 @@
 * [一、 认证配置](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%80%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE)
 * [二、 运行](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%BA%8C-%E8%BF%90%E8%A1%8C)
 * [三、 Tips](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%89tips)
-* [四、 Input ](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#inputs)
+* [四、 Input ](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E5%9B%9B-inputs)
 * [官网 ](https://www.terraform.io/)
 
 
