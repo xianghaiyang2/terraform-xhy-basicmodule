@@ -98,7 +98,8 @@ module "basicmodule" {
 
  
 ```
-**一、 认证配置** 
+
+## 一、认证配置
 
    该项目使用环境变量进行认证
   
@@ -117,7 +118,7 @@ module "basicmodule" {
     #export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
   
   
-**二、 基本使用**
+## 二、 运行
 
    认证配置后，将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
    
@@ -131,7 +132,8 @@ module "basicmodule" {
     #terraform destroy                        # 释放所有资源
     #terraform apply -auto-approve            # 跳过yes确认直接执行
     
- **三、 Tips**
+    
+## 三、Tips
     
    ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑
    
@@ -148,13 +150,12 @@ module "basicmodule" {
    ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
 
-## Conditional creation
+**一、 认证配置**
+**二、 基本使用**
+**二、 Tips**
 
-  资源的创建及删除建议在开关中设置，而不是destroy。以下参数及资源开关：
   
   
-
-
 ## Inputs
 
     注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
