@@ -159,6 +159,7 @@ module "basicmodule" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| source | module的源码位置 | string | 复制即可 | yes |
 | region  | The region ID used to launch this module resources. If not set, it will be sourced from followed by ALICLOUD_REGION environment variable and profile | string  | ''  | no  |
 | profile  | The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable. | string  | ''  | no  |
 | rds_count  | The number of rds to be created.  | int  | 2  | if using rds module,it should be set.  |
