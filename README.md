@@ -176,6 +176,8 @@ module "basicmodule" {
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
 
     # VPC
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
 | vpc_name | vpc名字| string  | "" |   |
 | vswitch_name | 交换机名字| string  | "" |   |
 | vpc_cidr | vpc网段| string  | "172.16.0.0/12" |   |
@@ -183,6 +185,8 @@ module "basicmodule" {
 | availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 
     # ECS
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
 | image_owners | vpc名字| string  | "" |   |
 | image_name | 交换机名字| string  | "" |   |
 | ecs_name | vpc网段| string  | "172.16.0.0/12" |   |
