@@ -204,7 +204,7 @@ module "basicmodule" {
 | vswitch_name | 交换机名字| string  | "" |  no |
 | vpc_cidr_blocks | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |  yes |
 | vswitch_cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |  yes |
-| availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+| availability_zones | 交换机的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |  yes |
 
 
 
@@ -214,18 +214,18 @@ module "basicmodule" {
 **ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| image_owners | 以镜像所有者查找镜像，可传参数有system, self, others, marketplace | string  | "system" |   |
-| image_name | 以名字查找镜像 | string  | "^centos_7_06_64" |   |
-| ecs_name | 所要创建实例命名 | string | "xhy_test" |   |
-| ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |   |
-| key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |   |
-| ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |   |
-| ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" |   |
-| internet_max_bandwidth_out | 向公网输出的最大宽带 [0 , 100]| string  | "0" |   |
-| system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |   |
-| system_disk_size | 系统盘大小   | string  | "40" |   |
-| security_group_name | 安全组名称| string  | "xhy_test" |   |
-| nic_type | 安全组网络类型internet/intranet| string  | "intranet" |   |
+| image_owners | 以镜像所有者查找镜像，可传参数有system, self, others, marketplace | string  | "system" | yes  |
+| image_name | 以名字查找镜像 | string  | "^centos_7_06_64" | yes  |
+| ecs_name | 所要创建实例命名 | string | "xhy_test" |  yes |
+| ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |  no |
+| key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |  yes |
+| ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |  no |
+| ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" | no  |
+| internet_max_bandwidth_out | 向公网输出的最大宽带 [0 , 100]| string  | "0" |  no |
+| system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |  no |
+| system_disk_size | 系统盘大小   | string  | "40" | no  |
+| security_group_name | 安全组名称| string  | "xhy_test" |  no |
+| nic_type | 安全组网络类型internet/intranet| string  | "intranet" |  no |
 | ecs_vswitch_id | ecs实例的交换机id | string  | "" | no |
 
 <br>
@@ -233,11 +233,11 @@ module "basicmodule" {
 **SLB**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| slb_name | slb的命名 | string  | "" |   |
-| address_type | slb的网络类型可选 internet/intranet | string  | "intranet" |   |
-| specification | slb实例的规格。可选"slb.s1.small", "slb.s2.small", "slb.s2.medium", "slb.s3.small", "slb.s3.medium", "slb.s3.large" and "slb.s4.large" | string | "slb.s2.small" |   |
-| internet_charge_type | 付费类型 If this value is "PayByBandwidth", then argument "internet" must be "true". Default is "PayByTraffic". If load balancer launched in VPC, this value must be "PayByTraffic"  | string  | "PayByTraffic" |   |
-| slb_vswitch_id | slb绑定的交换机id   | string  | "" |   |
+| slb_name | slb的命名 | string  | "" |  yes |
+| address_type | slb的网络类型可选 internet/intranet | string  | "intranet" | no  |
+| specification | slb实例的规格。可选"slb.s1.small", "slb.s2.small", "slb.s2.medium", "slb.s3.small", "slb.s3.medium", "slb.s3.large" and "slb.s4.large" | string | "slb.s2.small" |  no |
+| internet_charge_type | 付费类型 If this value is "PayByBandwidth", then argument "internet" must be "true". Default is "PayByTraffic". If load balancer launched in VPC, this value must be "PayByTraffic"  | string  | "PayByTraffic" |  no |
+| slb_vswitch_id | slb绑定的交换机id   | string  | "" |  no |
 
 
 <br>
@@ -245,13 +245,13 @@ module "basicmodule" {
 **Mongodb**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| mongo_name | mongo的命名 | string  | "" |   |
-| mongo_instance_class | mongo的[规格](https://www.alibabacloud.com/help/zh/doc-detail/57141.htm) | string  | "dds.mongo.mid" |   |
-| mongo_instance_storage | 实例的储存空间大小[10,2000] | string | "10" |   |
-| mongo_replication_factor | 实例的备用节点数目[3, 5, 7]  | string  | "3" |   |
-| mongo_account_password | root账号的密码It is a string of 6 to 32 characters and is composed of letters, numbers, and underlines   | string  | "" |   |
-| mongo_engine_version | 数据库引擎版本 3.4、4.0或4.2。 | string | "4.2" |   |
-| mongo_vswitch_id | 数据库绑定的交换机id  | string  | "" |   |
+| mongo_name | mongo的命名 | string  | "" |  yes |
+| mongo_instance_class | mongo的[规格](https://www.alibabacloud.com/help/zh/doc-detail/57141.htm) | string  | "dds.mongo.mid" |  no |
+| mongo_instance_storage | 实例的储存空间大小[10,2000] | string | "10" |  no |
+| mongo_replication_factor | 实例的备用节点数目[3, 5, 7]  | string  | "3" |  no |
+| mongo_account_password | root账号的密码It is a string of 6 to 32 characters and is composed of letters, numbers, and underlines   | string  | "" |  yes |
+| mongo_engine_version | 数据库引擎版本 3.4、4.0或4.2。 | string | "4.2" | no  |
+| mongo_vswitch_id | 数据库绑定的交换机id  | string  | "" | no  |
 
 
 <br>
@@ -259,12 +259,12 @@ module "basicmodule" {
 **EIP**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| eip_name | 弹性公网命名 | string  | "" |   |
-| eip_internet_charge_type | 支付方式 | string  | "PayByTraffic" |   |
-| bandwidth | 公网宽带大小 | string | "2" |   |
-| isp | 弹性公网的行类型，默认为BGP | string  | "BGP" |   |
-| eip_instance_charge_type | 套餐类型，PrePaid/PostPaid，默认为PostPaid | string  | "PostPaid" |   |
-| instance_ids | 需要创建弹性公网的资源id，可以是ECS 、SLB instance 、Nat Gateway | string | "" |   |
+| eip_name | 弹性公网命名 | string  | "" | yes  |
+| eip_internet_charge_type | 支付方式 | string  | "PayByTraffic" | no  |
+| bandwidth | 公网宽带大小 | string | "2" | no  |
+| isp | 弹性公网的行类型，默认为BGP | string  | "BGP" |  no |
+| eip_instance_charge_type | 套餐类型，PrePaid/PostPaid，默认为PostPaid | string  | "PostPaid" |  no |
+| instance_ids | 需要创建弹性公网的资源id，可以是ECS 、SLB instance 、Nat Gateway | string | "" |  yes |
 
 
 
