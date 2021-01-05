@@ -181,11 +181,11 @@ module "basicmodule" {
 **全局参数**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| source | module的源码位置 | string |复制即可 | yes | 
+| source | module的源码位置 | string |复制页首即可 | yes | 
 | region  | 用于设定动作的覆盖地区，如cn-chengdu cn-beijing，如果未传该值，可在环境变量中设置export ALICLOUD_REGION="cn-chengdu" | string  | 'cn-chengdu'  | no  |
 | profile  | 集中存放环境变量的文件，如果未设置，可在全局环境变量中设置 | string  | ''  | no  |
 | delete_protection  | 是否释放保护，有一定的资源保护能力  | bool  |  false  | no  |
-| use_vpc_module | 是否使用vpc资源   | bool  |  true  | no  |
+| use_vpc_module | 是否使用vpc资源   | bool  |  true | no  |
 | use_ecs_module  | 是否使用ECS资源 | bool |  true | no  |
 | use_slb_module | 是否使用slb资源   | bool  |  true  | no  |
 | use_eip_module | 是否使用eip资源   | bool  |  true  | no  |
@@ -204,7 +204,7 @@ module "basicmodule" {
 | vswitch_name | 交换机名字| string  | "" |  yes |
 | vpc_cidr_blocks | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |  yes |
 | vswitch_cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |  yes |
-| availability_zones | 交换机的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |  yes |
+| availability_zones | 交换机的可用区（建议传入该地区的所有可用区），其中“check”和源码相关，不能随意修改 | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |  yes |
 
 
 
@@ -214,10 +214,10 @@ module "basicmodule" {
 **ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| image_owners | 以镜像所有者查找镜像，可传参数有system, self, others, marketplace | string  | "system" | yes  |
+| image_owners | 以镜像所有者查找镜像，可传参数有[system](https://help.aliyun.com/document_detail/100410.html?spm=a2c4g.11186623.2.17.56f72d9fWINNAA#concept-orn-h2x-dgb), self, others, marketplace | string  | "system" | yes  |
 | image_name | 以名字查找镜像 | string  | "^centos_7_06_64" | yes  |
 | ecs_name | 所要创建实例命名 | string | "" |  yes |
-| ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |  no |
+| ecs_type | [实例规格](https://help.aliyun.com/document_detail/108490.html?spm=a2c4g.11174283.6.604.1db552feA0i4HY)   | string  | "ecs.s6-c1m1.small" |  no |
 | key_name | 密钥对命名   | map  | "" |  yes |
 | ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |  no |
 | ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" | no  |
