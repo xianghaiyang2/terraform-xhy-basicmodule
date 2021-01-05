@@ -98,3 +98,22 @@ module "eip" {
   instance_id = "${var.instance_ids}"
   count_format = "${var.count_format}"
 }
+
+
+module "rocketMQ" {
+  source = "./db/rocketMQ"
+  use_mq_module = var.use_mq_module
+  mqtopic_count = var.mqtopic_count
+  delete_protection = var.delete_protection
+  instance_name = var.instance_name
+  instance_description = var.instance_description
+  group_description = var.group_description
+  tags = var.tags
+  group_name = var.group_name
+  group_type = var.group_type
+  count_format = var.count_format
+  topic_name = var.topic_name
+  topic_description = var.topic_description
+  topic_message_type = var.topic_message_type
+}
+

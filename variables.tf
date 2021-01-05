@@ -15,6 +15,30 @@ variable "delete_protection" {
 }
 
 
+variable "use_vpc_module" {
+  default = true
+}
+
+variable "use_ecs_module" {
+  default = true
+}
+
+variable "use_eip_module" {
+  default = true
+}
+
+variable "use_slb_module" {
+  default = true
+}
+
+variable "use_mongo_module" {
+  default = true
+}
+
+variable "use_mq_module" {
+  default = true
+}
+
 
 variable "ecs_count" {
   default = 2
@@ -28,57 +52,13 @@ variable "eip_count" {
   default = 1
 }
 
-variable "use_ecs_module" {
-  default = true
+variable "mqtopic_count" {
+  default = 2
 }
-
-variable "use_eip_module" {
-  default = true
-}
-
-variable "use_kms_module" {
-  default = true
-}
-
-variable "use_oss_module" {
-  default = true
-}
-
-variable "use_ram_module" {
-  default = true
-}
-
-variable "use_rds_module" {
-  default = true
-}
-
-variable "use_mongo_module" {
-  default = true
-}
-
-
-variable "use_slb_module" {
-  default = true
-}
-
-variable "use_vpc_module" {
-  default = true
-}
-
 
 variable "count_format" {
   default = "%02d"
 }
-
-
-variable "which_bucket_for_uploading" {
-  description = "1 means the first bucket,such as bucket name buc0"
-  default = 1
-}
-
-
-
-
 
 
 # ====================VPC==================
@@ -114,9 +94,6 @@ variable "vswitch_name" {
 }
 
 
-
-
-
 # =====================SLB=====================
 variable "slb_name" {
   default = "xhy_safasfastest"
@@ -142,8 +119,6 @@ variable "specification" {
   default = "slb.s2.small"
 }
 
-
-
 variable "internet_charge_type" {
   default = "PayByTraffic"
 }
@@ -157,193 +132,6 @@ variable "tags" {
 
   }
 }
-
-
-
-# =================RDS=================
-variable "instance_type" {
-  default = "rds.mysql.s3.large"
-}
-
-variable "rds_name" {
-  default = "xhysafasdf_test"
-}
-
-
-
-variable "engine_version" {
-  default = "5.7"
-}
-
-variable "engine" {
-  default = "MySQL"
-}
-
-variable "instance_storage" {
-  default = "100"
-}
-
-variable "instance_charge_type" {
-  default = "Postpaid"
-}
-
-variable "rds_zone_id" {
-  default = "cn-shanghai-MAZ5(f,g)"
-}
-
-
-# =======================db====================
-variable "db_description" {
-  default = ""
-}
-
-
-#db ccount
-variable "rds_account_name" {
-  default = "myuser"
-}
-
-variable "rds_account_pwd" {
-  default = "Test1234"
-}
-
-variable "account_type" {
-  default = "Super"
-}
-
-variable "account_name" {
-  default = "miniapp"
-}
-
-variable "character_set" {
-  default = "utf8"
-}
-
-variable "account_privilege" {
-  default = "ReadWrite"
-}
-
-
-
-# ==========================RAM=========================
-variable "user_name" {
-  default = "test1121"
-}
-
-variable "display_name" {
-  default = "test01"
-}
-
-variable "mfa_bind_required" {
-  default = false
-}
-
-variable "password_reset_required" {
-  default = true
-}
-
-variable "password" {
-  default = "Test1234!"
-}
-
-variable "group_name" {
-  default = "app_desdgdgv_xy"
-}
-
-variable "group_comments" {
-  default = "app开发用户组"
-}
-
-variable "force" {
-  default = true
-}
-
-variable "ak_status" {
-  default = "Active"
-}
-
-variable "secret_file" {
-  default = ""//自定义文件路径
-}
-
-variable "policy_name" {
-  type = "map"
-  default = {
-    policy_name1 = "AliyunOSSFullAccess"
-    policy_name2 = "AliyunECSFullAccess"
-  }
-}
-
-variable "policy_type" {
-  type = "map"
-  default = {
-    policy_type1 = "System"
-    policy_type2 = "System"
-  }
-}
-
-
-
-# =====================OSS=====================
-variable "sse_algorithm" {
-  default = "AES256"//should be in array []string{"AES256", "KMS"}
-}
-
-variable "bucket_names" {
-  type = "map"
-  default = {
-    buc0 = "apptest-xy1234"
-  }
-}
-
-variable "bucket_acls" {
-  type = "map"
-  default = {
-    buc0 = "private"//"private","public-read"
-  }
-}
-
-variable "bucket_storage_classes" {
-  type = "map"
-  default = {
-    buc0 = "Standard"//"Standard","IA","Archive"
-  }
-}
-
-variable "logging_target_prefix" {
-  default = "log/"
-}
-
-variable "object_key" {
-  type = "map"
-  default = {
-    key1 = ""//自定义
-  }
-}
-
-variable "object_source" {
-  type = "map"
-  default = {
-    source1 = ""//自定义
-  }
-}
-
-
-
-
-# =========================KMS=========================
-variable "description" {
-  default = "KMS for OSS"
-}
-
-variable "deletion_window_in_days" {
-  default = "7"
-}
-
-variable "is_enabled" {
-  default = true
-}
-
 
 
 # ========================EIP===========================
@@ -373,12 +161,7 @@ variable "instance_ids" {
   default = []
 }
 
-
-
-
 # =========================ECS=========================
-
-
 variable "image_owners" {
   default = "system"
 }
@@ -387,12 +170,9 @@ variable "image_name" {
   default = "^centos_7_06_64"
 }
 
-
 variable "ecs_vswitch_id" {
   default = ""
 }
-
-
 
 variable "ecs_name" {
   default = "xhsdfasfdy_test"
@@ -401,7 +181,6 @@ variable "ecs_name" {
 variable "ecs_type" {
   default = "ecs.ic5.large"
 }
-
 
 variable "key_name" {
   default = "xhsdzsfzsy_test"
@@ -416,12 +195,9 @@ variable "ecs_instance_charge_type" {
   default = "PostPaid"
 }
 
-
 variable "internet_max_bandwidth_out" {
   default = 0
 }
-
-
 
 variable "system_disk_category" {
   default = "cloud_efficiency"
@@ -443,11 +219,7 @@ variable "nic_type" {
   default = "intranet"
 }
 
-
-
 # ==============mongodb===============
-
-
 variable "mongo_name" {
   default = "xhy_test"
 }
@@ -480,10 +252,42 @@ variable "mongo_engine_version" {
   default = "4.2"
 }
 
-//variable "mongo_backup_period" {
-//  default = "Saturday"
-//}
 
-//variable "mongo_backup_time" {
-//  default = "03:00Z-05:00Z"
-//}
+# ==============rocketMQ===============
+
+variable "instance_name" {
+  default = "xhy_test"
+}
+
+variable "group_name" {
+  default = "xhy_test"
+}
+
+variable "topic_name" {
+  default = "xhy_test"
+}
+
+variable "instance_description" {
+  default = "test_instance"
+}
+
+variable "group_description" {
+  default = "test_group"
+}
+
+variable "topic_description" {
+  default = "test_topic"
+}
+
+variable "group_type" {
+  default = ["tcp", "http"]
+}
+
+variable "topic_message_type" {
+  type         = number
+  description  = "这是topic接受的消息类型，可选0：普通消息 1：分区顺序消息 2：全局顺序消息 4：事务消息 5：定时/延时消息"
+  default      = 0
+}
+
+
+

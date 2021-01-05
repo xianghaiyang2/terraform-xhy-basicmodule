@@ -1,4 +1,5 @@
 
+# mongodb的创建并无安全组的添加字段，且出现添加安全组出错的情况。系无安全组
 resource "alicloud_mongodb_instance" "mongodb" {
   count                = "${var.use_mongodb_module ? (var.instance_count != 0 ? var.instance_count : (var.delete_protection ? 1 : 0)) : 0}"   # 这里相当于是可以控制数目
   name                 = "${var.instance_name}-${format(var.count_format, count.index+1)}"

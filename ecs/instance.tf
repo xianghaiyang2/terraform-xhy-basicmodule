@@ -88,7 +88,6 @@ resource "alicloud_instance" "instance" {
   deletion_protection = "${var.delete_protection}"
 }
 
-
 resource "alicloud_key_pair" "pair" {
   count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"     # 生成一个秘钥
   key_name = "${var.key_name}"
