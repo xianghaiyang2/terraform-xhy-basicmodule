@@ -189,7 +189,7 @@ module "basicmodule" {
 | mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |  
 
-<br>
+<br> * 2
 
 
   **VPC**
