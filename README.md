@@ -12,7 +12,6 @@
 
 
 
-
 ## 参数模板
 ```hcl
 module "basicmodule" {
@@ -152,7 +151,7 @@ module "basicmodule" {
 
 ## 三、Tips
     
-   ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑
+   ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑。创建多个资源时，会根据你提供的命名进行“排序命名”
    
    ②关于vpc：      后台逻辑支持创建一个vpc，之后的基本所有资源都是在该vpc下，如若同一地区还需要建立多个vpc,可新建工作目录更改资源名称等，重新terraform init 
    
@@ -160,7 +159,7 @@ module "basicmodule" {
    
    ④关于ECS：      后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的ECS。如若未指定交换机，将在随机交换机下创建指定数量的ECS
    
-   ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网（可调整）slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS
+   ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS。当address_type选择公网时，交换机会被忽略。即address_type优先级大于slb_vswitch_id
    
    ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
    
@@ -212,8 +211,8 @@ module "basicmodule" {
 **ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
-| image_name | 镜像名字（匹配） | string  | "^centos_7_06_64" |   |
+| image_owners | 以镜像所有者查找镜像，可传参数有system, self, others, marketplace | string  | "system" |   |
+| image_name | 以名字查找镜像 | string  | "^centos_7_06_64" |   |
 | ecs_name | 所要创建实例命名 | string | "xhy_test" |   |
 | ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |   |
 | key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |   |
@@ -223,8 +222,33 @@ module "basicmodule" {
 | system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |   |
 | system_disk_size | 系统盘大小   | string  | "40" |   |
 | security_group_name | 安全组名称| string  | "xhy_test" |   |
-| nic_type | vpc网段| string  | "172.16.0.0/12" |   |
-| ecs_vswitch_id | 交换机网段   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} | no |
+| nic_type | 安全组网络类型internet/intranet| string  | "intranet" |   |
+| ecs_vswitch_id | ecs实例的交换机id | string  | "" | no |
+
+<br>
+**SLB**
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| slb_name | slb的命名 | string  | "" |   |
+| address_type | slb的网络类型可选 internet/intranet | string  | "intranet" |   |
+| specification | slb实例的规格。可选"slb.s1.small", "slb.s2.small", "slb.s2.medium", "slb.s3.small", "slb.s3.medium", "slb.s3.large" and "slb.s4.large" | string | "slb.s2.small" |   |
+| internet_charge_type | 付费类型 If this value is "PayByBandwidth", then argument "internet" must be "true". Default is "PayByTraffic". If load balancer launched in VPC, this value must be "PayByTraffic"  | string  | "PayByTraffic" |   |
+| slb_vswitch_id | slb绑定的交换机id   | string  | "" |   |
+
+
+<br>
+**Mongodb**
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| mongo_name | mongo的命名 | string  | "" |   |
+| mongo_instance_class | mongo的*[规格](https://www.alibabacloud.com/help/zh/doc-detail/57141.htm) | string  | "intranet" |   |
+| mongo_instance_storage | slb实例的规格。可选"ge" | string | "slb.s2.small" |   |
+| mongo_replication_factor | 付费类型  | string  | "PayByTraffic" |   |
+| mongo_account_password | slb绑定的交换机id   | string  | "" |   |
+| mongo_engine_version | slb实例的规格。可选"ge" | string | "slb.s2.small" |   |
+| mongo_vswitch_id | 付费类型  | string  | "PayByTraffic" |   |
+
+
 
 | system_disk_size | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 |   | Whether to use oss sub-module.   | bool  | true  | no  |
