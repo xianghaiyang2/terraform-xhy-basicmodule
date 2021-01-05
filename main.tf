@@ -101,7 +101,7 @@ module "eip" {
 
 
 module "rocketMQ" {
-  source = "./db/rocketMQ"
+  source = "./db/rocketmq"
   use_mq_module = var.use_mq_module
   mqtopic_count = var.mqtopic_count
   delete_protection = var.delete_protection
