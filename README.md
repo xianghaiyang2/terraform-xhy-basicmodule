@@ -3,11 +3,12 @@
 ## 目录
 
 * [参数模板](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E5%8F%82%E6%95%B0%E6%A8%A1%E6%9D%BF)
+* [官网 ](https://www.terraform.io/)
 * [一、 认证配置](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%80%E8%AE%A4%E8%AF%81%E9%85%8D%E7%BD%AE)
 * [二、 运行](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%BA%8C-%E8%BF%90%E8%A1%8C)
 * [三、 Tips](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E4%B8%89tips)
 * [四、 Input ](https://github.com/xianghaiyang/terraform-xhy-basicmodule/blob/master/README.md#%E5%9B%9B-inputs)
-* [官网 ](https://www.terraform.io/)
+
 
 
 
@@ -159,7 +160,7 @@ module "basicmodule" {
    
    ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网（可调整）slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS
    
-   ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹>>性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
+   ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
    
    ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
