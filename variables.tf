@@ -268,15 +268,15 @@ variable "topic_name" {
 }
 
 variable "instance_description" {
-  default = "test_instance"
+  default = "instance"
 }
 
 variable "group_description" {
-  default = "test_group"
+  default = "group"
 }
 
 variable "topic_description" {
-  default = "test_topic"
+  default = "topic"
 }
 
 variable "group_type" {
