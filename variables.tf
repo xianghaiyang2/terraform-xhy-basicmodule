@@ -268,19 +268,19 @@ variable "topic_name" {
 }
 
 variable "instance_description" {
-  default = "instance"
+  default = "xhy_test_instance"
 }
 
 variable "group_description" {
-  default = "group"
+  default = "xhy_test_group"
 }
 
 variable "topic_description" {
-  default = "topic"
+  default = "xhy_test_topic"
 }
 
 variable "group_type" {
-  default = ["tcp", "http"]
+  default = ["tcp"]
 }
 
 variable "topic_message_type" {
