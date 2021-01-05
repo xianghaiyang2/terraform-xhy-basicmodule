@@ -264,7 +264,7 @@ module "basicmodule" {
 | bandwidth | 公网宽带大小 | string | "2" | no  |
 | isp | 弹性公网的行类型，默认为BGP | string  | "BGP" |  no |
 | eip_instance_charge_type | 套餐类型，PrePaid/PostPaid，默认为PostPaid | string  | "PostPaid" |  no |
-| instance_ids | 需要创建弹性公网的资源id，可以是ECS 、SLB instance 、Nat Gateway | string | "" |  yes |
+| instance_ids | 需要创建弹性公网的资源id，可以是ECS 、SLB instance 、Nat Gateway | list | ["", ""] |  yes |
 
 
 
