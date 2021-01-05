@@ -200,8 +200,8 @@ module "basicmodule" {
 **VPC**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| vpc_name | vpc名字| string |  "" | no |
-| vswitch_name | 交换机名字| string  | "" |  no |
+| vpc_name | vpc名字| string |  "" | yes |
+| vswitch_name | 交换机名字| string  | "" |  yes |
 | vpc_cidr_blocks | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |  yes |
 | vswitch_cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |  yes |
 | availability_zones | 交换机的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |  yes |
@@ -216,15 +216,15 @@ module "basicmodule" {
 |------|-------------|:----:|:-----:|:-----:|
 | image_owners | 以镜像所有者查找镜像，可传参数有system, self, others, marketplace | string  | "system" | yes  |
 | image_name | 以名字查找镜像 | string  | "^centos_7_06_64" | yes  |
-| ecs_name | 所要创建实例命名 | string | "xhy_test" |  yes |
+| ecs_name | 所要创建实例命名 | string | "" |  yes |
 | ecs_type | 实例规格   | string  | "ecs.s6-c1m1.small" |  no |
-| key_name | 密钥对命名   | map  | "xianghaiyang_key_pair" |  yes |
+| key_name | 密钥对命名   | map  | "" |  yes |
 | ecs_internet_charge_type | 支付方式| string  | "PayByTraffic" |  no |
 | ecs_instance_charge_type | 购买实例的套餐（后付费）| string  | "PostPaid" | no  |
 | internet_max_bandwidth_out | 向公网输出的最大宽带 [0 , 100]| string  | "0" |  no |
 | system_disk_category | 系统盘类型   | string  | "cloud_efficiency" |  no |
 | system_disk_size | 系统盘大小   | string  | "40" | no  |
-| security_group_name | 安全组名称| string  | "xhy_test" |  no |
+| security_group_name | 安全组名称| string  | "" |  yes |
 | nic_type | 安全组网络类型internet/intranet| string  | "intranet" |  no |
 | ecs_vswitch_id | ecs实例的交换机id | string  | "" | no |
 
