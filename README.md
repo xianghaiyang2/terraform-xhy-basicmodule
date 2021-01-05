@@ -110,6 +110,7 @@ module "basicmodule" {
 
  
 ```
+<br>
 
 ## 一、认证配置
 
@@ -123,7 +124,7 @@ module "basicmodule" {
     #set terraform Log
     #export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
     #export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
-  
+  <br>
   set terraform init 加速
 
   如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
@@ -158,7 +159,7 @@ module "basicmodule" {
    
    ⑤关于slb：      后台逻辑根据你提供的交换机id创建一个 内网（可调整）slb，并自动绑定所有ECS实例。如若未指定交换机，将在随机交换机下创建指定数量的ECS
    
-   ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
+   ⑥关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹>>性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
    
    ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
@@ -170,9 +171,10 @@ module "basicmodule" {
 
     注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
     
+<br>
+<br>  
    
-   
-  **全局参数**
+**全局参数**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | source | module的源码位置 | string |复制即可 | yes | 
@@ -189,10 +191,10 @@ module "basicmodule" {
 | mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |  
 
-<br> * 2
+<br>
+<br>
 
-
-  **VPC**
+**VPC**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | vpc_name | vpc名字| string |  "" |  |
@@ -203,8 +205,9 @@ module "basicmodule" {
 
 
 
-
-  **ECS**
+<br>
+<br>
+**ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
