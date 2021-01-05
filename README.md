@@ -124,8 +124,9 @@ module "basicmodule" {
     #export TF_LOG=WARN   # DEBUG INFO WARN ERROR 几个日志级别
     #export TF_LOG_PATH=/home/ubuntu/Desktop/terraform-xhy-basicmodule-client/log/error.log
   
-  #set terraform init 加速
-  #如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
+  set terraform init 加速
+
+  如果没有缓存文件要手动创建$HOME/.terraform.d/plugin-cache文件——测试有效
   
     #export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
   
@@ -162,9 +163,6 @@ module "basicmodule" {
    ⑦关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
 
 
-**一、 认证配置**
-**二、 基本使用**
-**二、 Tips**
 
   
   
@@ -172,6 +170,7 @@ module "basicmodule" {
 
     注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
     
+   
    
 **全局参数**
 | Name | Description | Type | Default | Required |
@@ -191,6 +190,8 @@ module "basicmodule" {
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
 
 
+
+
 **VPC**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
@@ -199,6 +200,9 @@ module "basicmodule" {
 | vpc_cidr | vpc网段，你需要传入一个vpc网段以创建一个vpc | string  | "172.16.0.0/12" |   |
 | cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
 | availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
+
+
+
 
 **ECS**
 | Name | Description | Type | Default | Required |
