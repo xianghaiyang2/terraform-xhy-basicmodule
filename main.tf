@@ -9,10 +9,10 @@ provider "alicloud" {
 module "vpc" {
   source = "./vpc"
   use_vpc_module = "${var.use_vpc_module}"
-  vpc_cidr = "${var.vpc_cidr}"
+  vpc_cidr = "${var.vpc_cidr_blocks}"
   vpc_name = "${var.vpc_name}"
   vswitch_name = "${var.vswitch_name}"
-  cidr_blocks = "${var.cidr_blocks}"
+  cidr_blocks = "${var.vswitch_cidr_blocks}"
   availability_zones = "${var.availability_zones}"
   tags               = "${var.tags}"
   count_format = "${var.count_format}"

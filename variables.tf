@@ -91,12 +91,12 @@ variable "availability_zones" {
   }
 }
 # vpc网段
-variable "vpc_cidr" {
+variable "vpc_cidr_blocks" {
   default = "172.16.0.0/12"
 }
 
 # 交换机网段
-variable "cidr_blocks" {
+variable "vswitch_cidr_blocks" {
   type = "map"
   default = {
     check0 = "172.16.2.0/24"
