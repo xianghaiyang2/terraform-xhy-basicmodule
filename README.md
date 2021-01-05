@@ -133,6 +133,7 @@ module "basicmodule" {
     #export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
   
 <br>
+
 ## 二、 运行
 
    认证配置后，将参数复制到任意目录如： ~/project/main.tf。根据需求定义相关参数。
@@ -148,6 +149,7 @@ module "basicmodule" {
     #terraform apply -auto-approve            # 跳过yes确认直接执行
     
 <br>    
+
 ## 三、Tips
     
    ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑
@@ -168,6 +170,7 @@ module "basicmodule" {
 
   
 <br>  
+
 ## 四、 Inputs
 
     注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
