@@ -172,7 +172,7 @@ module "basicmodule" {
     
    
    
-**全局参数**
+  **全局参数**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | source | module的源码位置 | string |复制即可 | yes | 
@@ -187,12 +187,12 @@ module "basicmodule" {
 | ecs_count  | 需要创建ecs实例的数量| int  |  2  |  use_ecs_module设置为true时，该参数必须设置 |
 | eip_count  | 需要创建eip资源的数量| int  |  1  |  use_eip_module设置为true时，该参数必须设置 |
 | mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
-| tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
+| tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |  
+
+<br>
 
 
-
-
-**VPC**
+  **VPC**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | vpc_name | vpc名字| string |  "" |  |
@@ -204,7 +204,7 @@ module "basicmodule" {
 
 
 
-**ECS**
+  **ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
