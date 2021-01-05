@@ -171,7 +171,9 @@ module "basicmodule" {
 ## 四、 Inputs
 
     注意： 以下基本所有参数均有后台默认值，但是默认值不一定能成功创建资源。你的参数将覆盖默认值！
-
+    
+   
+**全局参数**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | source | module的源码位置 | string |复制即可 | yes | 
@@ -188,7 +190,8 @@ module "basicmodule" {
 | mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数必须设置  |
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |
 
-    # VPC
+
+**VPC**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | vpc_name | vpc名字| string |  "" |  |
@@ -197,7 +200,7 @@ module "basicmodule" {
 | cidr_blocks | 交换机网段,传入几个网段，创建几个交换机   | map  | {check0 = "172.16.2.0/24", check1 = "172.16.1.0/24"} |   |
 | availability_zones | vpc的可用区   | map  | {check0 = "cn-chengdu-a", check1 = "cn-chengdu-b"} |   |
 
-    # ECS
+**ECS**
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | image_owners | 镜像所有者，可传参数有system, self, others, marketplace | string  | "system" |   |
