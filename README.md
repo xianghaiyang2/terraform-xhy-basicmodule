@@ -26,11 +26,13 @@ module "basicmodule" {
   use_slb_module      = false
   use_eip_module      = false
   use_mongo_module    = false
+  use_mq_module       = false
 ===============分割线===================
   #which_bucket_for_uploading = 1
   ecs_count           = 3
   mongo_count         = 2
   eip_count           = 2
+  mqtopic_count       = 2
 ===============分割线===================
   tags = {
     name   = "xhy"
@@ -100,13 +102,17 @@ module "basicmodule" {
   isp                         = "BGP"
   eip_instance_charge_type    = "PostPaid"
   instance_ids               = ["i-2vcaftjuyjwcic78gggi", "i-2vch1w0uwx9qqa053urj"]
-  eip_tags = {
-    name   = "haode"
-    team  = "haode"
-    forwhat = "haode"
-  }
 
-}
+
+================资源分割线=================
+  #rocketMQ
+  instance_name          = "xhy_test_instance"
+  group_name             = "xhy_test_group"
+  topic_name             = "xhy_test_topic"
+  instance_description   = "instance_discription"
+  group_description      = "group_discription"
+  topic_description      = "topic_discription"
+  topic_message_type     = 0
 
  
 ```
@@ -153,7 +159,7 @@ module "basicmodule" {
     
    ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑。创建多个资源时，会根据你提供的命名进行“排序命名”
    
-   ②关于付费：     部分资源均有internet_charge_type（Internet charge type of the instance, Valid values are PayByBandwidth, PayByTraffic. Default to PayByBandwidth. From version 1.7.1, default to PayByTraffic. It is only PayByBandwidth when instance_charge_type is PrePaid）、instance_charge_type（instance charge type. Valid values are "PrePaid" and "PostPaid". Default to "PostPaid"）两个参数。即instance_charge_type = PostPaid 时 internet_charge_type = PayByTraffic； instance_charge_type = PrePaid 时 internet_charge_type = PayByBandwidth
+   ②关于付费：     后台所有资源均为按量付费。 注意：instance_charge_type 、internet_charge_type两个值不建议调整
    
    ③关于vpc：      后台逻辑支持创建一个vpc，之后的基本所有资源都是在该vpc下，如若同一地区还需要建立多个vpc,可新建工作目录更改资源名称等，重新terraform init 
    
@@ -166,6 +172,8 @@ module "basicmodule" {
    ⑦关于eip：      后台逻辑可创建多个eip，并根据你提供的资源id（可以是NAT网关实例ID、负载均衡SLB实例ID、云服务器ECS实例ID、辅助弹性网卡实例ID、高可用虚拟IP实例ID），给这些资源分别添加弹性公网。注意，创建几个eip，就需要传入几个资源id（注意eip并非vpc下的资源）
    
    ⑧关于mongodb：  后台逻辑根据你提供的交换机id，在指定交换机下创建指定数量的mongo实例。如若未指定交换机，将在随机交换机下创建指定数量的mongo实例
+   
+   ⑨关于rocketMQ： 后台逻辑创建一个实例，一个tcp组（http存在未解决的BUG能创建但无法释放），mqtopic_count个topic
 
 
 
@@ -190,9 +198,11 @@ module "basicmodule" {
 | use_slb_module | 是否使用slb资源   | bool  |  true  | no  |
 | use_eip_module | 是否使用eip资源   | bool  |  true  | no  |
 | use_mongo_module | 是否使用mongodb资源   | bool  | true  | no  |
+| use_mq_module | 是否使用rocketMQ资源   | bool  | true  | no  |
 | ecs_count  | 需要创建ecs实例的数量| int  |  2  |  use_ecs_module设置为true时，该参数有必要设置 |
 | eip_count  | 需要创建eip资源的数量| int  |  1  |  use_eip_module设置为true时，该参数有必要设置 |
-| mongo_count  | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数有必要设置  |
+| mongo_count | 需要创建mongodb资源的数量  | int  | 1  | use_mongo_module设置为true时，该参数有必要设置  |
+| mqtopic_count | 需要创建MQ中topic资源的数量  | int  | 2  | use_mq_module设置为true时，该参数有必要设置  |
 | tags | 统一标签   | map  | {name = "xhy",team = "devops",forwhat = "test"} | no  |  
 
 <br>
@@ -266,6 +276,20 @@ module "basicmodule" {
 | eip_instance_charge_type | 套餐类型，PrePaid/PostPaid，默认为PostPaid | string  | "PostPaid" |  no |
 | instance_ids | 需要创建弹性公网的资源id，可以是ECS 、SLB instance 、Nat Gateway | list | ["", ""] |  yes |
 
+
+<br>
+
+**rocketMQ**
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| instance_name | 实例命名 | string  | "" | yes  |
+| group_name | 组命名 | string  | "" | yes  |
+| topic_name | topic命名 | string | "" | yes  |
+| instance_description | 实例的描述 | string  | "" |  no |
+| group_description | 组描述 | string  | "" |  no |
+| topic_description | topic描述 | string | "" |  no |
+| group_type | 指定所建组对应的协议类型 tcp/http(目前该参数存在BUG，默认创建tcp协议，不传值即可) | list  | ["tcp","http"] |  no |
+| topic_message_type |topic处理的消息类型 0：普通消息、1：分区顺序消息、2：全局顺序消息、4：事务消息、5：定时/延时消息| int | 0 |  yes |
 
 
 
