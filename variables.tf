@@ -280,7 +280,7 @@ variable "topic_description" {
 }
 
 variable "group_type" {
-  default = ["tcp"]
+  default = ["tcp", "http"]
 }
 
 variable "topic_message_type" {
