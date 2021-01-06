@@ -130,7 +130,7 @@ module "rds" {
   instance_name = var.rds_instance_name
   vswitch_ids = "${var.mongo_vswitch_id != "" ? [var.mongo_vswitch_id] : module.vpc.vswitch_ids}"
   security_group_ids = module.ecs.security_group_id
-  security_ips = "${module.vpc.vpc_cidr_block}"
+  security_ips = ["${module.vpc.vpc_cidr_block}"]
   tags = var.tags
 }
 
