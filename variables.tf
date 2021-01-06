@@ -301,6 +301,10 @@ variable "topic_message_type" {
 
 # ==============rds===============
 
+variable "rds_instance_name" {
+  default = "xhy_test"
+}
+
 variable "rds_engine" {
   default = "MySQL"
 }
@@ -321,7 +325,9 @@ variable "rds_instance_storage_type" {
   default = "local_ssd"
 }
 
-variable "rds_instance_name" {
-  default = "xhy_test"
+variable "rds_vswitch_id" {
+  default = ""
 }
+
+
 
