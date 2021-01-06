@@ -101,7 +101,7 @@ module "eip" {
 
 
 module "rocketMQ" {
-  source = "./db/rocketmq"
+  source = "./rocketmq"
   use_mq_module = var.use_mq_module
   mqtopic_count = var.mqtopic_count
   delete_protection = var.delete_protection
@@ -115,5 +115,22 @@ module "rocketMQ" {
   topic_name = var.topic_name
   topic_description = var.topic_description
   topic_message_type = var.topic_message_type
+}
+
+module "rds" {
+  source = "./db/rds"
+  use_rds_db = var.use_rds_module
+  rds_count = var.rds_count
+  delete_protection = var.delete_protection
+  engine = var.rds_engine
+  engine_version = var.rds_engine_version
+  instance_type = var.rds_instance_type
+  instance_storage = var.rds_instance_storage
+  db_instance_storage_type = var.rds_instance_storage_type
+  instance_name = var.rds_instance_name
+  vswitch_ids = "${var.mongo_vswitch_id != "" ? [var.mongo_vswitch_id] : module.vpc.vswitch_ids}"
+  security_group_ids = module.ecs.security_group_id
+  security_ips = module.vpc.vpc_cidr_block
+  tags = var.tags
 }
 

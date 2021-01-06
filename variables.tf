@@ -16,39 +16,42 @@ variable "delete_protection" {
 
 
 variable "use_vpc_module" {
-  default = true
+  default = false
 }
 
 variable "use_ecs_module" {
-  default = true
+  default = false
 }
 
 variable "use_eip_module" {
-  default = true
+  default = false
 }
 
 variable "use_slb_module" {
-  default = true
+  default = false
 }
 
 variable "use_mongo_module" {
-  default = true
+  default = false
 }
 
 variable "use_mq_module" {
-  default = true
+  default = false
 }
 
+variable "use_rds_module" {
+  default = false
+}
 
 variable "ecs_count" {
   default = 2
 }
 
-variable "mongo_count" {
+variable "eip_count" {
   default = 1
 }
 
-variable "eip_count" {
+variable "mongo_count" {
   default = 1
 }
 
@@ -56,9 +59,15 @@ variable "mqtopic_count" {
   default = 2
 }
 
+variable "rds_count" {
+  default = 1
+}
+
 variable "count_format" {
   default = "%02d"
 }
+
+
 
 
 # ====================VPC==================
@@ -268,15 +277,15 @@ variable "topic_name" {
 }
 
 variable "instance_description" {
-  default = "xhy_test_instance"
+  default = "xhy_instance_description"
 }
 
 variable "group_description" {
-  default = "xhy_test_group"
+  default = "xhy_group_description"
 }
 
 variable "topic_description" {
-  default = "xhy_test_topic"
+  default = "xhy_topic_description"
 }
 
 variable "group_type" {
@@ -290,4 +299,29 @@ variable "topic_message_type" {
 }
 
 
+# ==============rds===============
+
+variable "rds_engine" {
+  default = "MySQL"
+}
+
+variable "rds_engine_version" {
+  default = "5.7"
+}
+
+variable "rds_instance_type" {
+  default = "rds.mysql.t1.small"
+}
+
+variable "rds_instance_storage" {
+  default = 20
+}
+
+variable "rds_instance_storage_type" {
+  default = "local_ssd"
+}
+
+variable "rds_instance_name" {
+  default = "xhy_test"
+}
 
