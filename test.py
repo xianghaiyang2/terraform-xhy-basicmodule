@@ -16,8 +16,7 @@
 # b = [1]
 # print(a[1])
 
-c = ["a", "b"]
-
+c = "a"
 print(len(c))
 
 

@@ -6,11 +6,19 @@ resource "alicloud_ons_instance" "rocketmq" {
   tags     = var.tags
 }
 
-resource "alicloud_ons_group" "group" {
-  count       = var.use_mq_module ? (var.mqtopic_count !=0 ? 2 : (var.delete_protection ? 2 : 0)) : 0
+resource "alicloud_ons_group" "group_tcp" {
+  count       = var.use_mq_module ? (var.mqtopic_count !=0 ? 1 : (var.delete_protection ? 1 : 0)) : 0
   instance_id = alicloud_ons_instance.rocketmq.0.id          # 实例id
-  group_id    = "GID-${var.group_name}-${format(var.count_format, count.index+1)}"                            # 组名已经被group_name代替，一般命名为 "GID_"
+  group_id    = "GID-tcp-${var.group_name}-${format(var.count_format, count.index+1)}"                            # 组名已经被group_name代替，一般命名为 "GID_"
   group_type  = element(distinct(compact(concat(var.group_type))), count.index)                           # 指定该组的协议（http, tcp）这里要轮循两者都要创建
+  remark      = var.group_description                         # 组描述
+  tags        = var.tags
+}
+resource "alicloud_ons_group" "group_http" {
+  count       = var.use_mq_module ? (var.mqtopic_count !=0 ? 1 : (var.delete_protection ? 1 : 0)) : 0
+  instance_id = alicloud_ons_instance.rocketmq.0.id          # 实例id
+  group_id    = "GID-http-${var.group_name}-${format(var.count_format, count.index+1)}"                            # 组名已经被group_name代替，一般命名为 "GID_"
+  group_type  = element(reverse(distinct(compact(concat(var.group_type)))), count.index)                           # 指定该组的协议（http, tcp）这里要轮循两者都要创建
   remark      = var.group_description                         # 组描述
   tags        = var.tags
 }
