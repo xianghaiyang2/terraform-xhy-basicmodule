@@ -159,7 +159,7 @@ module "basicmodule" {
     
    ①创建及释放：   资源的创建顺序需满足依赖逻辑，例如，创建了vswitch后，才能建立ECS。同时释放顺序也需要满足依赖逻辑。创建多个资源时，会根据你提供的命名进行“排序命名”
    
-   ②关于付费：     部分资源均有internet_charge_type（Internet charge type of the instance, Valid values are PayByBandwidth, PayByTraffic. Default to PayByBandwidth. From version 1.7.1, default to PayByTraffic. It is only PayByBandwidth when instance_charge_type is PrePaid）、instance_charge_type（instance charge type. Valid values are "PrePaid" and "PostPaid". Default to "PostPaid"）两个参数。即instance_charge_type = PostPaid 时 internet_charge_type = PayByTraffic； instance_charge_type = PrePaid 时 internet_charge_type = PayByBandwidth
+   ②关于付费：     后台所有资源均为按量付费。 注意：instance_charge_type 、internet_charge_type两个值不建议调整
    
    ③关于vpc：      后台逻辑支持创建一个vpc，之后的基本所有资源都是在该vpc下，如若同一地区还需要建立多个vpc,可新建工作目录更改资源名称等，重新terraform init 
    
